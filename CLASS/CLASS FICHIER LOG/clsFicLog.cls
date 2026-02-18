@@ -110,7 +110,7 @@ End Type
 '***    Type Pour La Gestion D'Un Enregistrement Du Fichier Log                 ***
 '******************************************************************************
 Private Type LOGENRTYPE
-   strEnrLigne(21) As String * 512                                                                     ' Les lignes de l'enregistrement
+   strEnrLigne(21) As String * 256                                                                     ' Les lignes de l'enregistrement
 End Type
 
 '******************************************************************************
@@ -286,27 +286,27 @@ Attribute Ecriture.VB_HelpID = 2007
               ' Je vais
               With .ulenFichierEnr
                     ' Je met une chaine de separation
-                    .strEnrLigne(0) = String(510, "*") & vbCrLf
+                    .strEnrLigne(0) = String(254, "*") & vbCrLf
                     ' Je met une chaine de separation
-                    .strEnrLigne(2) = String(510, "*") & vbCrLf
+                    .strEnrLigne(2) = String(254, "*") & vbCrLf
                     ' Je met une chaine de separation
-                    .strEnrLigne(4) = String(510, "*") & vbCrLf
+                    .strEnrLigne(4) = String(254, "*") & vbCrLf
                     ' Je met une chaine de separation
-                    .strEnrLigne(5) = "***" & LOGFEUILLE & ":" & Space(503 - Len(LOGFEUILLE)) & "***" & vbCrLf
+                    .strEnrLigne(5) = "***" & LOGFEUILLE & ":" & Space(247 - Len(LOGFEUILLE)) & "***" & vbCrLf
                     ' Je met une chaine de separation
-                    .strEnrLigne(7) = String(510, "*") & vbCrLf
+                    .strEnrLigne(7) = String(254, "*") & vbCrLf
                     ' Je met une chaine de separation
-                    .strEnrLigne(8) = "***" & LOGINSTRUCTION & ":" & Space(503 - Len(LOGINSTRUCTION)) & "***" & vbCrLf
+                    .strEnrLigne(8) = "***" & LOGINSTRUCTION & ":" & Space(247 - Len(LOGINSTRUCTION)) & "***" & vbCrLf
                     ' Je met une chaine de separation
-                    .strEnrLigne(10) = "***" & LOGPARAMETRE & ":" & Space(503 - Len(LOGPARAMETRE)) & "***" & vbCrLf
+                    .strEnrLigne(10) = "***" & LOGPARAMETRE & ":" & Space(247 - Len(LOGPARAMETRE)) & "***" & vbCrLf
                     ' Je met une chaine de separation
-                    .strEnrLigne(13) = String(510, "*") & vbCrLf
+                    .strEnrLigne(13) = String(254, "*") & vbCrLf
                     ' Je met une chaine de separation
-                    .strEnrLigne(15) = "***" & LOGDESCRIPTION & ":" & Space(503 - Len(LOGDESCRIPTION)) & "***" & vbCrLf
+                    .strEnrLigne(15) = "***" & LOGDESCRIPTION & ":" & Space(247 - Len(LOGDESCRIPTION)) & "***" & vbCrLf
                     ' Je met une chaine de separation
-                    .strEnrLigne(19) = String(510, "*") & vbCrLf
+                    .strEnrLigne(19) = String(254, "*") & vbCrLf
                     ' Je met une chaine de separation
-                    .strEnrLigne(21) = String(510, "*") & vbCrLf
+                    .strEnrLigne(21) = String(254, "*") & vbCrLf
               End With
               ' J'ecrit les donnes de la version de la dll
               EcritureDeltaApiVersion
@@ -1082,7 +1082,7 @@ Private Sub EcritureDeltaApiVersion()
             strVersion = App.EXEName & " [" & .strDeltaApiVersion & "]" & " Copyright " & App.LegalCopyright
         End With
         ' Je defini la fin de la ligne
-        .ulenFichierEnr.strEnrLigne(1) = "***" & Space$((505 - Len(strVersion)) / 2) & strVersion & Space$((505 - Len(strVersion)) / 2) & "***" & vbCrLf
+        .ulenFichierEnr.strEnrLigne(1) = "***" & Space$((249 - Len(strVersion)) / 2) & strVersion & Space$((249 - Len(strVersion)) / 2) & "***" & vbCrLf
    End With
    ' Fin
 EcritureDeltaApiVersion_Exit:
@@ -1130,7 +1130,7 @@ Private Sub LectureApplication()
             ' Je calcule le debut de la chaine nom
             intVersionDebut = InStr(intNomFin + 1, .strEnrLigne(3), "[", vbTextCompare) + 1
             ' Je cacule la fin de la chaine nom
-            intVersionFin = InStrRev(.strEnrLigne(3), "]", 512, vbTextCompare)
+            intVersionFin = InStrRev(.strEnrLigne(3), "]", 256, vbTextCompare)
         End With
         ' Je recupre le nom de l'application
         .ulapFichierApplication.strApplicationNom = Mid$(.ulenFichierEnr.strEnrLigne(3), intNomDebut, intNomFin - intNomDebut)
@@ -1180,7 +1180,7 @@ Private Sub EcritureApplication()
             strVersion = LOGVERSION & ":[" & .strApplicationVersion & "]"
         End With
         ' Je defini la fin de la ligne
-        .ulenFichierEnr.strEnrLigne(3) = "***" & strNom & Space$(505 - Len(strNom + strVersion)) & strVersion & "***" & vbCrLf
+        .ulenFichierEnr.strEnrLigne(3) = "***" & strNom & Space$(248 - Len(strNom + strVersion)) & strVersion & "***" & vbCrLf
    End With
    ' Fin
 EcritureApplication_Exit:
@@ -1228,7 +1228,7 @@ Private Sub LectureFeuille()
             ' Je calcule le debut de la chaine nom
             intNomDebut = InStr(intTypeFin + 1, .strEnrLigne(6), "[", vbTextCompare) + 1
             ' Je cacule la fin de la chaine nom
-            intNomFin = InStrRev(.strEnrLigne(6), "]", 512, vbTextCompare)
+            intNomFin = InStrRev(.strEnrLigne(6), "]", 256, vbTextCompare)
         End With
         ' Je recupre le type de feuille
         .ulfeFichierFeuille.intFeuilleType = Mid$(.ulenFichierEnr.strEnrLigne(6), intTypeDebut, intTypeFin - intTypeDebut)
@@ -1278,7 +1278,7 @@ Private Sub EcritureFeuille()
             strNom = LOGNOM & ":[" & .strFeuilleNom & "]"
         End With
         ' Je defini la fin de la ligne
-        .ulenFichierEnr.strEnrLigne(6) = "***" & strType & Space$(505 - Len(strType + strNom)) & strNom & "***" & vbCrLf
+        .ulenFichierEnr.strEnrLigne(6) = "***" & strType & Space$(248 - Len(strType + strNom)) & strNom & "***" & vbCrLf
     End With
    ' Fin
 EcritureFeuille_Exit:
@@ -1330,15 +1330,15 @@ Private Sub LectureInstruction()
             ' Je calcule le debut de la chaine nom
             intNomDebut = InStr(intTypeFin + 1, .strEnrLigne(9), "[", vbTextCompare) + 1
             ' Je cacule la fin de la chaine nom
-            intNomFin = InStrRev(.strEnrLigne(9), "]", 512, vbTextCompare)
+            intNomFin = InStrRev(.strEnrLigne(9), "]", 256, vbTextCompare)
             ' Je calcule le debut de la chaine parametre
             intParametreADebut = InStr(1, .strEnrLigne(11), "[", vbTextCompare) + 1
             ' Je cacule la fin de la chaine parametre
-            intParametreAFin = InStrRev(.strEnrLigne(11), "]", 512, vbTextCompare)
+            intParametreAFin = InStrRev(.strEnrLigne(11), "]", 256, vbTextCompare)
             ' Je calcule le debut de la chaine parametre
             intParametreBDebut = InStr(1, .strEnrLigne(12), "[", vbTextCompare) + 1
             ' Je cacule la fin de la chaine parametre
-            intParametreBFin = InStrRev(.strEnrLigne(12), "]", 512, vbTextCompare)
+            intParametreBFin = InStrRev(.strEnrLigne(12), "]", 256, vbTextCompare)
         End With
         ' Je recupre le type d'instruction
         .ulinFichierInstruction.intInstructionType = Mid$(.ulenFichierEnr.strEnrLigne(9), intTypeDebut, intTypeFin - intTypeDebut)
@@ -1393,25 +1393,25 @@ Private Sub EcritureInstruction()
             strNom = LOGNOM & ":[" & .strInstructionNom & "]"
             ' Je regare la longueur de la chaine parametre
             Select Case Len(.strInstructionParametre)
-                Case Is > 68
+                Case Is > 128
                     ' La chaine est plus grande que 68
                     ' Je cherche une virgule
-                    lngParametreALongueur = InStrRev(.strInstructionParametre, ",", 68)
+                    lngParametreALongueur = InStrRev(.strInstructionParametre, ",", 128)
                     ' Je regarde la longueur
                     Select Case lngParametreALongueur
                         Case vbEmpty
                             '  La longueur est null
                             ' Je la defini
-                            lngParametreALongueur = 68
+                            lngParametreALongueur = 128
                         Case Else
                             '  La longueur n'est pas null
                             ' Je la defini
-                            lngParametreALongueur = lngParametreALongueur Mod 68
+                            lngParametreALongueur = lngParametreALongueur Mod 128
                     End Select
                     ' Je defini le descriptif  de l'erreur
                     strParametreA = "[" & Left(.strInstructionParametre, lngParametreALongueur) & "]"
                     ' Je defini le descriptif  de l'erreur
-                    strParametreB = "[" & Mid(.strInstructionParametre, lngParametreALongueur, 68) & "]"
+                    strParametreB = "[" & Mid(.strInstructionParametre, lngParametreALongueur, 128) & "]"
                 Case Else
                     ' Je defini le descriptif  de l'erreur
                     strParametreA = "[" & .strInstructionParametre & "]"
@@ -1420,11 +1420,11 @@ Private Sub EcritureInstruction()
             End Select
         End With
         ' Je defini la fin de la ligne
-        .ulenFichierEnr.strEnrLigne(9) = "***" & strType & Space$(505 - Len(strType + strNom)) & strNom & "***" & vbCrLf
+        .ulenFichierEnr.strEnrLigne(9) = "***" & strType & Space$(248 - Len(strType + strNom)) & strNom & "***" & vbCrLf
         ' Je defini la fin de la ligne
-        .ulenFichierEnr.strEnrLigne(11) = "***" & strParametreA & Space$(505 - Len(strParametreA)) & "***" & vbCrLf
+        .ulenFichierEnr.strEnrLigne(11) = "***" & strParametreA & Space$(248 - Len(strParametreA)) & "***" & vbCrLf
         ' Je defini la fin de la ligne
-        .ulenFichierEnr.strEnrLigne(12) = "***" & strParametreB & Space$(505 - Len(strParametreB)) & "***" & vbCrLf
+        .ulenFichierEnr.strEnrLigne(12) = "***" & strParametreB & Space$(248 - Len(strParametreB)) & "***" & vbCrLf
     End With
    ' Fin
 EcritureInstruction_Exit:
@@ -1476,15 +1476,15 @@ Private Sub LectureErreur()
             ' Je calcule le debut de la chaine nom
             intDescriptionADebut = InStr(1, .strEnrLigne(16), "[", vbTextCompare) + 1
             ' Je cacule la fin de la chaine nom
-            intDescriptionAFin = InStrRev(.strEnrLigne(16), "]", 512, vbTextCompare)
+            intDescriptionAFin = InStrRev(.strEnrLigne(16), "]", 256, vbTextCompare)
             ' Je calcule le debut de la chaine nom
             intDescriptionBDebut = InStr(1, .strEnrLigne(17), "[", vbTextCompare) + 1
             ' Je cacule la fin de la chaine nom
-            intDescriptionBFin = InStrRev(.strEnrLigne(17), "]", 512, vbTextCompare)
+            intDescriptionBFin = InStrRev(.strEnrLigne(17), "]", 256, vbTextCompare)
             ' Je calcule le debut de la chaine nom
             intDescriptionCDebut = InStr(1, .strEnrLigne(18), "[", vbTextCompare) + 1
             ' Je cacule la fin de la chaine nom
-            intDescriptionCFin = InStrRev(.strEnrLigne(18), "]", 512, vbTextCompare)
+            intDescriptionCFin = InStrRev(.strEnrLigne(18), "]", 256, vbTextCompare)
         End With
         ' Je recupre le numero de l'erreur
         .ulerFichierErreur.strErreurNumero = Mid$(.ulenFichierEnr.strEnrLigne(14), intNumeroDebut, intNumeroFin - intNumeroDebut)
@@ -1538,66 +1538,66 @@ Private Sub EcritureErreur()
             strNumero = LOGNUMERO & ":[" & .strErreurNumero & "]"
             ' Je regare la longueur de la chaine parametre
             Select Case Len(.strErreurDescription)
-                Case Is > 68
+                Case Is > 128
                     ' La chaine est plus grande que 68
                     ' Je cherche une virgule
-                    lngDescriptionALongueur = InStrRev(.strErreurDescription, ".", 68)
+                    lngDescriptionALongueur = InStrRev(.strErreurDescription, ".", 128)
                     ' Je regarde la longueur
                     Select Case lngDescriptionALongueur
                         Case vbEmpty
                             '  La longueur est null
                             ' Je cherche une virgule
-                            lngDescriptionALongueur = InStrRev(.strErreurDescription, " ", 68)
+                            lngDescriptionALongueur = InStrRev(.strErreurDescription, " ", 128)
                             ' Je regarde la longueur
                             Select Case lngDescriptionALongueur
                                 Case vbEmpty
                                     '  La longueur est null
                                     ' Je la defini
-                                    lngDescriptionALongueur = 68
+                                    lngDescriptionALongueur = 128
                                 Case Else
                                     '  La longueur n'est pas null
                                     ' Je la defini
-                                    lngDescriptionALongueur = lngDescriptionALongueur Mod 68
+                                    lngDescriptionALongueur = lngDescriptionALongueur Mod 128
                             End Select
                         Case Else
                             '  La longueur n'est pas null
                             ' Je la defini
-                            lngDescriptionALongueur = lngDescriptionALongueur Mod 68
+                            lngDescriptionALongueur = lngDescriptionALongueur Mod 128
                     End Select
                     ' Je defini le descriptif  de l'erreur
                     strDescriptionA = "[" & Left(.strErreurDescription, lngDescriptionALongueur) & "]"
                     ' Je regare la longueur de la chaine parametre
                     Select Case Len(.strErreurDescription)
-                        Case Is > 136
-                            ' La chaine est plus grande que 136
+                        Case Is > 256
+                            ' La chaine est plus grande que 256
                             ' Je cherche une virgule
-                            lngDescriptionBLongueur = InStrRev(.strErreurDescription, ".", 136) - 68
+                            lngDescriptionBLongueur = InStrRev(.strErreurDescription, ".", 256) - 128
                             ' Je regarde la longueur
                             Select Case lngDescriptionBLongueur
                                 Case Is < vbEmpty
                                     '  La longueur est null
                                     ' Je cherche une virgule
-                                    lngDescriptionBLongueur = InStrRev(.strErreurDescription, " ", 136) - 68
+                                    lngDescriptionBLongueur = InStrRev(.strErreurDescription, " ", 256) - 128
                                     ' Je regarde la longueur
                                     Select Case lngDescriptionBLongueur
                                         Case Is < vbEmpty
                                             '  La longueur est null
                                             ' Je la defini
-                                            lngDescriptionBLongueur = 68
+                                            lngDescriptionBLongueur = 128
                                         Case Else
                                             '  La longueur n'est pas null
                                             ' Je la defini
-                                            lngDescriptionBLongueur = lngDescriptionBLongueur Mod 68
+                                            lngDescriptionBLongueur = lngDescriptionBLongueur Mod 128
                                     End Select
                                 Case Else
                                     '  La longueur n'est pas null
                                     ' Je la defini
-                                    lngDescriptionBLongueur = lngDescriptionBLongueur Mod 68
+                                    lngDescriptionBLongueur = lngDescriptionBLongueur Mod 128
                             End Select
                             ' Je defini le descriptif  de l'erreur
                             strDescriptionB = "[" & Mid(.strErreurDescription, lngDescriptionALongueur, lngDescriptionBLongueur) & "]"
                             ' Je defini le descriptif  de l'erreur
-                            strDescriptionC = "[" & Mid(.strErreurDescription, lngDescriptionALongueur + lngDescriptionBLongueur, 68) & "]"
+                            strDescriptionC = "[" & Mid(.strErreurDescription, lngDescriptionALongueur + lngDescriptionBLongueur, 128) & "]"
                         Case Else
                             ' La chaine n'est pas plus grand que 136
                             ' Je defini le descriptif  de l'erreur
@@ -1616,13 +1616,13 @@ Private Sub EcritureErreur()
             End Select
         End With
         ' Je defini la fin de la ligne
-        .ulenFichierEnr.strEnrLigne(14) = "***" & strNumero & Space$(505 - Len(strNumero)) & "***" & vbCrLf
+        .ulenFichierEnr.strEnrLigne(14) = "***" & strNumero & Space$(248 - Len(strNumero)) & "***" & vbCrLf
         ' Je defini la fin de la ligne
-        .ulenFichierEnr.strEnrLigne(16) = "***" & strDescriptionA & Space$(505 - Len(strDescriptionA)) & "***" & vbCrLf
+        .ulenFichierEnr.strEnrLigne(16) = "***" & strDescriptionA & Space$(248 - Len(strDescriptionA)) & "***" & vbCrLf
         ' Je defini la fin de la ligne
-        .ulenFichierEnr.strEnrLigne(17) = "***" & strDescriptionB & Space$(505 - Len(strDescriptionB)) & "***" & vbCrLf
+        .ulenFichierEnr.strEnrLigne(17) = "***" & strDescriptionB & Space$(248 - Len(strDescriptionB)) & "***" & vbCrLf
         ' Je defini la fin de la ligne
-        .ulenFichierEnr.strEnrLigne(18) = "***" & strDescriptionC & Space$(505 - Len(strDescriptionC)) & "***" & vbCrLf
+        .ulenFichierEnr.strEnrLigne(18) = "***" & strDescriptionC & Space$(248 - Len(strDescriptionC)) & "***" & vbCrLf
     End With
    ' Fin
 EcritureErreur_Exit:
@@ -1670,7 +1670,7 @@ Private Sub LectureDate()
             ' Je calcule le debut de la chaine heure
             intHeureDebut = InStr(intJourFin, .strEnrLigne(20), "[", vbTextCompare) + 1
             ' Je cacule la fin de la chaine heure
-            intHeureFin = InStrRev(.strEnrLigne(20), "]", 512, vbTextCompare)
+            intHeureFin = InStrRev(.strEnrLigne(20), "]", 256, vbTextCompare)
         End With
         ' Je recupere le jour de l'erreur
         .uldtFichierDate.strDateJour = Mid$(.ulenFichierEnr.strEnrLigne(20), intJourDebut, intJourFin - intJourDebut)
@@ -1720,7 +1720,7 @@ Private Sub EcritureDate()
             strHeure = LOGHEURE & ":[" & .strDateHeure & "]"
         End With
         ' Je defini la fin de la ligne
-        .ulenFichierEnr.strEnrLigne(20) = "***" & strJour & Space$(505 - Len(strJour & strHeure)) & strHeure & "***" & vbCrLf
+        .ulenFichierEnr.strEnrLigne(20) = "***" & strJour & Space$(248 - Len(strJour & strHeure)) & strHeure & "***" & vbCrLf
     End With
    ' Fin
 EcritureDate_Exit:
@@ -1769,15 +1769,15 @@ Private Sub AfficheErreur(ByVal strApplicationNom As String, ByVal strApplicatio
    ' Je defini la premiere ligne du message d'erreur
    strErreurMessage(0) = LOGAPPLICATION & ":"
    ' Je defini la premiere ligne du message d'erreur
-   strErreurMessage(0) = strErreurMessage(0) & String(40 - Len(strErreurMessage(0)), " ") & LOGFEUILLE & ":" & vbCrLf
+   strErreurMessage(0) = strErreurMessage(0) & String(10 - Len(strErreurMessage(0)), " ") & LOGFEUILLE & ":" & vbCrLf
    ' Je defini la deuxieme ligne du message d'erreur
    strErreurMessage(1) = LOGNOM & ":" & strApplicationNom
    ' Je defini la deuxieme ligne du message d'erreur
-   strErreurMessage(1) = strErreurMessage(1) & String(40 - Len(strErreurMessage(1)), " ") & LOGTYPE & ":" & intFeuilleType & vbCrLf
+   strErreurMessage(1) = strErreurMessage(1) & String(10 - Len(strErreurMessage(1)), " ") & LOGTYPE & ":" & intFeuilleType & vbCrLf
    ' Je defini la troisieme ligne du message d'erreur
    strErreurMessage(2) = LOGVERSION & ":" & strApplicationVersion
    ' Je defini la troisieme ligne du message d'erreur
-   strErreurMessage(2) = strErreurMessage(2) & String(40 - Len(strErreurMessage(2)), " ") & LOGNOM & ":" & strLOGFEUILLENOM & vbCrLf & vbCrLf
+   strErreurMessage(2) = strErreurMessage(2) & String(10 - Len(strErreurMessage(2)), " ") & LOGNOM & ":" & strLOGFEUILLENOM & vbCrLf & vbCrLf
    ' Je defini la quatrieme ligne du message d'erreur
    strErreurMessage(3) = LOGINSTRUCTION & ":" & vbCrLf
    ' Je defini la cinquieme ligne du message d'erreur
