@@ -140,7 +140,7 @@ End Type
 '***    Type Pour La Gestion De L'Instruction                                               ***
 '******************************************************************************
 Private Type LOGINSTRUCTIONTYPE
-   intInstructionType As Integer                                                                     ' Le type de la Instruction en erreur
+   IntInstructionType As Integer                                                                     ' Le type de la Instruction en erreur
    strInstructionNom As String                                                                       ' Le nom de la Instruction en erreur
    strInstructionParametre As String                                                              ' Les parametres de la Instruction
 End Type
@@ -761,7 +761,7 @@ End Function
 '***        "Form_Load"," ",Err)                                                                     ***
 '******************************************************************************
 Public Function AjouteErreur(ByVal objApplication As Object, ByVal intFeuilleType As LOGFEUILLETYPETYPEENUM, _
-   ByVal strFeuilleNom As String, ByVal intInstructionType As LOGINSTRUCTIONTYPEENUM, ByVal strInstructionNom As String, _
+   ByVal strFeuilleNom As String, ByVal IntInstructionType As LOGINSTRUCTIONTYPEENUM, ByVal strInstructionNom As String, _
    ByVal strInstructionParametre As String, ByVal vntErreur As Variant) As Boolean
 Attribute AjouteErreur.VB_HelpID = 2014
    Dim lngErreurNumero As Long                                                                  ' Le numero de l'erreur
@@ -812,7 +812,7 @@ Attribute AjouteErreur.VB_HelpID = 2014
                 ' Je vais
                 With .ulinFichierInstruction
                     ' Je defini le type de Instruction en erreur
-                    .intInstructionType = intInstructionType
+                    .IntInstructionType = IntInstructionType
                     ' Je defini le nom de la Instruction en erreur
                     .strInstructionNom = strInstructionNom
                     ' Je defini les parametres de l'erreur
@@ -834,7 +834,7 @@ Attribute AjouteErreur.VB_HelpID = 2014
                 End With
                 ' Je l'AfficheErreur a l'user
                 AfficheErreur .ulapFichierApplication.strApplicationNom, .ulapFichierApplication.strApplicationVersion, .ulfeFichierFeuille.intFeuilleType, .ulfeFichierFeuille.strFeuilleNom, _
-                   .ulinFichierInstruction.intInstructionType, .ulinFichierInstruction.strInstructionNom, .ulinFichierInstruction.strInstructionParametre, _
+                   .ulinFichierInstruction.IntInstructionType, .ulinFichierInstruction.strInstructionNom, .ulinFichierInstruction.strInstructionParametre, _
                    .ulerFichierErreur.strErreurNumero, .ulerFichierErreur.strErreurDescription, _
                    .uldtFichierDate.strDateJour, .uldtFichierDate.strDateHeure
                  ' Je l'ecrit
@@ -864,7 +864,7 @@ AjouteErreur_Exit:
 AjouteErreur_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
    AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "AjouteErreur", _
-      intFeuilleType & "," & strFeuilleNom & "," & intInstructionType & "," & strInstructionNom & "," & strInstructionParametre, _
+      intFeuilleType & "," & strFeuilleNom & "," & IntInstructionType & "," & strInstructionNom & "," & strInstructionParametre, _
       CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je n'ai pas ajouter l'erreur dans le fichier journal
    AjouteErreur = False
@@ -929,7 +929,7 @@ Attribute Initialise.VB_HelpID = 2015
          ' Je vais beucoup
          With .ulinFichierInstruction
               ' Je met une chaine vide
-              .intInstructionType = vbNull
+              .IntInstructionType = vbNull
               ' Je met une chaine vide
               .strInstructionNom = vbNullString
               ' Je met une chaine vide
@@ -1341,7 +1341,7 @@ Private Sub LectureInstruction()
             intParametreBFin = InStrRev(.strEnrLigne(12), "]", 256, vbTextCompare)
         End With
         ' Je recupre le type d'instruction
-        .ulinFichierInstruction.intInstructionType = Mid$(.ulenFichierEnr.strEnrLigne(9), intTypeDebut, intTypeFin - intTypeDebut)
+        .ulinFichierInstruction.IntInstructionType = Mid$(.ulenFichierEnr.strEnrLigne(9), intTypeDebut, intTypeFin - intTypeDebut)
         ' Je recupere le nom de l'instruction
         .ulinFichierInstruction.strInstructionNom = Mid$(.ulenFichierEnr.strEnrLigne(9), intNomDebut, intNomFin - intNomDebut)
         ' Je recupere les parametres de l'instruction
@@ -1388,7 +1388,7 @@ Private Sub EcritureInstruction()
         ' Je vais
         With .ulinFichierInstruction
             ' Je defini le type de l'instruction en erreur
-            strType = LOGTYPE & ":[" & .intInstructionType & "]"
+            strType = LOGTYPE & ":[" & .IntInstructionType & "]"
             ' Je defini le nom de l'instruction en erreur
             strNom = LOGNOM & ":[" & .strInstructionNom & "]"
             ' Je regare la longueur de la chaine parametre
@@ -1760,7 +1760,7 @@ End Sub
 '***      Err.Description, vbnullstring, vbnullstring                                       ***
 '******************************************************************************
 Private Sub AfficheErreur(ByVal strApplicationNom As String, ByVal strApplicationVersion As String, ByVal intFeuilleType As Integer, _
-   ByVal strLOGFEUILLENOM As String, ByVal intInstructionType As Integer, ByVal strInstructionNom As String, _
+   ByVal strLOGFEUILLENOM As String, ByVal IntInstructionType As Integer, ByVal strInstructionNom As String, _
    ByVal strInstructionParametre As String, ByVal strErreurNumero As String, ByVal strErreurDescription As String, _
    ByVal strDateJour As String, ByVal strDateHeure As String)
    Dim strErreurMessage(12) As String * 40
@@ -1781,7 +1781,7 @@ Private Sub AfficheErreur(ByVal strApplicationNom As String, ByVal strApplicatio
    ' Je defini la quatrieme ligne du message d'erreur
    strErreurMessage(3) = LOGINSTRUCTION & ":" & vbCrLf
    ' Je defini la cinquieme ligne du message d'erreur
-   strErreurMessage(4) = LOGTYPE & ":" & intInstructionType & vbCrLf
+   strErreurMessage(4) = LOGTYPE & ":" & IntInstructionType & vbCrLf
    ' Je defini la sixieme ligne du message d'erreur
    strErreurMessage(5) = LOGNOM & ":" & strInstructionNom & vbCrLf
    ' Je defini la septieme ligne du message d'erreur
@@ -2039,7 +2039,7 @@ Attribute FeuilleType.VB_HelpID = 2020
     ' En Cas D'Erreur Je Gere L'Erreur
     On Error GoTo FeuilleType_Erreur
     ' Je retourne le type de feuille
-    FeuilleType = mulfiLogFichier.ulfeFichierFeuille.strFeuilleType
+    FeuilleType = mulfiLogFichier.ulfeFichierFeuille.intFeuilleType
     ' Fin
 FeuilleType_Exit:
     ' Je Sort De La Procedure
@@ -2074,7 +2074,7 @@ Public Property Let FeuilleType(ByVal intFeuilleType As LOGFEUILLETYPETYPEENUM)
     ' En Cas D'Erreur Je Gere L'Erreur
     On Error GoTo FeuilleType_Erreur
     ' Je defini la feuille en erreur
-    mulfiLogFichier.ulfeFichierFeuille.strFeuilleType = strFeuilleType
+    mulfiLogFichier.ulfeFichierFeuille.intFeuilleType = intFeuilleType
     ' Fin
 FeuilleType_Exit:
     ' Je Sort De La Procedure
@@ -2082,7 +2082,7 @@ FeuilleType_Exit:
     ' Fin
 FeuilleType_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "FeuilleType", strFEUILLECLASS, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "FeuilleType", intFeuilleType, CStr(Err.Number), Err.Description, vbNullString, vbNullString
     ' Je Continue
     Resume FeuilleType_Exit
     ' Fin
@@ -2143,7 +2143,7 @@ Public Property Let LOGFEUILLENOM(ByVal strLOGFEUILLENOM As String)
     ' En Cas D'Erreur Je Gere L'Erreur
     On Error GoTo LOGFEUILLENOM_Erreur
     ' Je defini la feuille en erreur
-    mulfiLogFichier.ulfeFichierFeuille.strLOGFEUILLENOM = strLOGFEUILLENOM
+    mulfiLogFichier.ulfeFichierFeuille.strFeuilleNom = strLOGFEUILLENOM
     ' Fin
 LOGFEUILLENOM_Exit:
     ' Je Sort De La Procedure
@@ -2172,12 +2172,12 @@ End Property
 '***    EXEMPLE:                                                                                        ***
 '***      =InstructionType                                                                            ***
 '******************************************************************************
-Public Property Get InstructionType() As String
+Public Property Get InstructionType() As Integer
 Attribute InstructionType.VB_HelpID = 2022
     ' En Cas D'Erreur Je Gere L'Erreur
     On Error GoTo InstructionType_Erreur
     ' Je retourne le type de Instruction
-    InstructionType = mulfiLogFichier.ulinFichierInstruction.strInstructionType
+    InstructionType = mulfiLogFichier.ulinFichierInstruction.IntInstructionType
     ' Fin
 InstructionType_Exit:
     ' Je Sort De La Procedure
@@ -2208,11 +2208,11 @@ End Property
 '***    EXEMPLE:                                                                                        ***
 '***      InstructionType="PROCEDURE:"                                                    ***
 '******************************************************************************
-Public Property Let InstructionType(ByVal strInstructionType As String)
+Public Property Let InstructionType(ByVal IntInstructionType As Integer)
     ' En Cas D'Erreur Je Gere L'Erreur
     On Error GoTo InstructionType_Erreur
     ' Je defini le type de Instruction en erreur
-    mulfiLogFichier.ulinFichierInstruction.strInstructionType = strInstructionType
+    mulfiLogFichier.ulinFichierInstruction.IntInstructionType = IntInstructionType
     ' Fin
 InstructionType_Exit:
     ' Je Sort De La Procedure
@@ -2220,7 +2220,7 @@ InstructionType_Exit:
     ' Fin
 InstructionType_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "InstructionType", strInstructionType, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "InstructionType", IntInstructionType, CStr(Err.Number), Err.Description, vbNullString, vbNullString
     ' Je Continue
     Resume InstructionType_Exit
     ' Fin

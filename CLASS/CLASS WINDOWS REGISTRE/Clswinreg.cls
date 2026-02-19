@@ -1186,10 +1186,10 @@ Attribute OuvreCle.VB_HelpID = 2030
         ' Je l'enleve de la collection
         gcolRegCle.Remove urclRegCle.strCleIndex
          ' J'ouvre l'entete de cle dans la base de registre
-         lngRegWinOperation = RegOuvreCle(urclRegCle.urcpClePrim.lngPrimSection, urclRegCle.urcpClePrim.strPrimCle, 0, KEY_ALL_ACCESS, urclRegCle.lngCleEntete)
+         lngRegWinOperation = RegOuvreCle(urclRegCle.urcpClePrim.lngPrimSection, urclRegCle.urcpClePrim.strPrimCle, 0, REGCONTROLKEYALLACCESS, urclRegCle.lngCleEntete)
          ' Je regarde le statut de l'operation
          Select Case lngRegWinOperation
-            Case ERROR_SUCCESS
+            Case REGERREURSUCCESS
                 ' J'ai ouvert la cle
                 ' Je la rajoute dans la collection
                 gcolRegCle.Add urclRegCle, urclRegCle.strCleIndex
@@ -1201,7 +1201,7 @@ Attribute OuvreCle.VB_HelpID = 2030
                 OuvreCle = False
                 ' Je regarde le statut de l'operation
                 Select Case lngRegWinOperation
-                   Case ERROR_INVALID_KEY
+                   Case REGERREURINVALIDKEY
                       ' La cle n'existe pas
                    Case Else
                       ' c'est une autre erreur
@@ -1281,7 +1281,7 @@ Attribute FermeCle.VB_HelpID = 2031
              lngRegWinOperation = RegFermeCle(urclRegCle.lngCleEntete)
              ' Je regarde le statut de l'operation
              Select Case lngRegWinOperation
-                Case ERROR_SUCCESS
+                Case REGERREURSUCCESS
                     ' J'ai fermer la cle
                     ' Je me rappelle que la cle est fermer
                     urclRegCle.lngCleEntete = vbEmpty
@@ -1295,7 +1295,7 @@ Attribute FermeCle.VB_HelpID = 2031
                     FermeCle = False
                     ' Je regarde le statut de l'operation
                     Select Case lngRegWinOperation
-                       Case ERROR_INVALID_KEY
+                       Case REGERREURINVALIDKEY
                           ' La cle n'existe pas
                        Case Else
                           ' c'est une autre erreur
@@ -1385,11 +1385,11 @@ Attribute EnumereCle.VB_HelpID = 2032
                     lngRegWinOperation = RegEnumereCle(urclRegClePrim.lngCleEntete, lngRegCleEnumIndex, urclRegCleSous.urcpClePrim.strPrimCle, lngRegCleEnumLongueur, vbEmpty, vbEmpty, vbEmpty, urclRegCleSous.urdtCleDate)
                     ' Je regarde la valeur de l'operation
                     Select Case lngRegWinOperation
-                        Case ERROR_SUCCESS
+                        Case REGERREURSUCCESS
                             ' J'ai enumerer une sous cle
                             ' J'ai  enumerer les cles
                             EnumereCle = True
-                        Case ERROR_NO_MORE_ITEMS
+                        Case REGERREURNOMOREITEMS
                             ' Je n'ai plus de sous cle a enumerer
                             ' J'ai  enumerer les cles
                             EnumereCle = True
@@ -1513,10 +1513,10 @@ Attribute EcritureCle.VB_HelpID = 2033
         ' Je l'enleve de la collection
         gcolRegCle.Remove urclRegCle.strCleIndex
          ' J'ecrit la cle dans la base de registre
-         lngRegWinOperation = RegEcritureCle(urclRegCle.urcpClePrim.lngPrimSection, urclRegCle.urcpClePrim.strPrimCle, vbEmpty, REG_NONE, vbEmpty, KEY_ALL_ACCESS, vbEmpty, urclRegCle.lngCleEntete, vbEmpty)
+         lngRegWinOperation = RegEcritureCle(urclRegCle.urcpClePrim.lngPrimSection, urclRegCle.urcpClePrim.strPrimCle, vbEmpty, REG_NONE, vbEmpty, REGCONTROLKEYALLACCESS, vbEmpty, urclRegCle.lngCleEntete, vbEmpty)
          ' Je regarde le statut de l'operation
          Select Case lngRegWinOperation
-            Case ERROR_SUCCESS
+            Case REGERREURSUCCESS
                 ' J'ai bien ecrit la cle
                 ' Je la rajoute dans la collection
                 gcolRegCle.Add urclRegCle, urclRegCle.strCleIndex
@@ -1528,7 +1528,7 @@ Attribute EcritureCle.VB_HelpID = 2033
                 EcritureCle = False
                 ' Je regarde le statut de l'operation
                 Select Case lngRegWinOperation
-                   Case ERROR_INVALID_KEY
+                   Case REGERREURINVALIDKEY
                       ' La cle n'existe pas
                    Case Else
                       ' c'est une autre erreur
@@ -1657,7 +1657,7 @@ Attribute SupprimeCle.VB_HelpID = 2034
                         lngRegWinOperation = RegSupprimeCle(urclRegClePrim.urcpClePrim.lngPrimSection, urclRegClePrim.urcpClePrim.strPrimCle)
                         ' Je regarde le statut de l'operation
                         Select Case lngRegWinOperation
-                           Case ERROR_SUCCESS
+                           Case REGERREURSUCCESS
                                ' J'ai bien supprimer la cle
                                gcolRegCle.Remove urclRegClePrim.strCleIndex
                                ' Je renvoie la valeur
@@ -1782,7 +1782,7 @@ Attribute LectureValeur.VB_HelpID = 2035
                     lngRegWinOperation = RegLectureValeurChaine(urclRegCle.lngCleEntete, urvaRegValeur.strValeurNom, vbEmpty, urvaRegValeur.lngValeurType, strRegValeur, lngRegValeurLongueur)
                     ' Je regarde le statut de l'operation
                     Select Case lngRegWinOperation
-                       Case ERROR_SUCCESS
+                       Case REGERREURSUCCESS
                             ' J'ai bien supprimer la cle
                             ' Je renvoie que j'ai lu la valeur
                             LectureValeur = True
@@ -1893,7 +1893,7 @@ Attribute EcritureValeur.VB_HelpID = 2036
          lngRegWinOperation = RegEcritureValeurChaine(urclRegCle.lngCleEntete, urvaRegValeur.strValeurNom, vbEmpty, urvaRegValeur.lngValeurType, strRegValeur, lngRegValeurLongueur)
          ' Je regarde le statut de l'operation
          Select Case lngRegWinOperation
-            Case ERROR_SUCCESS
+            Case REGERREURSUCCESS
                 ' J'ai bien ecrit la valeur de la cle
                 ' Je l'enleve si elle existe dans la collection
                 urclRegCle.colCleValeur.Add urvaRegValeur, urvaRegValeur.strValeurNom
@@ -1985,7 +1985,7 @@ Attribute SupprimeValeur.VB_HelpID = 2037
                      lngRegWinOperation = RegSupprimeValeur(urclRegCle.lngCleEntete, urvaRegValeur.strValeurNom)
                      ' Je regarde le statut de l'operation
                      Select Case lngRegWinOperation
-                        Case ERROR_SUCCESS
+                        Case REGERREURSUCCESS
                            ' J'ai bien supprimer la valeur de la cle
                            ' Je l'enleve si elle existe dans la collection
                            urclRegCle.colCleValeur.Remove urvaRegValeur.strValeurIndex
@@ -2081,11 +2081,11 @@ Attribute EnumereValeur.VB_HelpID = 2038
                         lngRegWinOperation = RegEnumereValeur(urclRegCle.lngCleEntete, lngRegValeurIndex, urvaRegValeur.strValeurNom, lngRegValeurNomLongueur, vbEmpty, urvaRegValeur.lngValeurType, vbEmpty, lngRegValeurLongueur)
                         ' Je regarde si j'ai recuperer la longueur de la valeur
                         Select Case lngRegWinOperation
-                            Case ERROR_SUCCESS
+                            Case REGERREURSUCCESS
                                 ' J'ai enumerer une sous cle
                                 ' J'ai  enumerer les cles
                                 EnumereValeur = True
-                            Case ERROR_NO_MORE_ITEMS
+                            Case REGERREURNOMOREITEMS
                                 ' Je n'ai plus de sous cle a enumerer
                                 ' J'ai  enumerer les cles
                                 EnumereValeur = True
@@ -2126,7 +2126,7 @@ Attribute EnumereValeur.VB_HelpID = 2038
                                 lngRegWinOperation = RegLectureValeurChaine(urclRegCle.lngCleEntete, urvaRegValeur.strValeurNom, vbEmpty, urvaRegValeur.lngValeurType, strRegValeur, lngRegValeurLongueur)
                                 ' Je regarde le statut de l'operation
                                 Select Case lngRegWinOperation
-                                   Case ERROR_SUCCESS
+                                   Case REGERREURSUCCESS
                                         ' J'ai bien lu la valeur
                                         ' J'ai  enumerer les cles
                                         EnumereValeur = True
@@ -2198,51 +2198,51 @@ Private Sub AjouteRegErreur(ByVal lngRegWinOperation As Long)
    urerRegErreur.lngErreurNumber = lngRegWinOperation
    ' Je regarde le numero d'erreur
    Select Case lngRegWinOperation
-      Case ERROR_ACCESS_DENIED
+      Case REGERREURACCESSDENIED
          urerRegErreur.strErreurDescription = "Access Denier"
-      Case ERROR_OUTOFMEMORY
+      Case REGERREUROUTOFMEMORY
          urerRegErreur.strErreurDescription = "Pas assez de memoire"
-      Case ERROR_INVALID_PARAMETER
+      Case REGERREURINVALIDPARAMETER
          urerRegErreur.strErreurDescription = "Parametre invalide"
-      Case ERROR_MORE_DATA
+      Case REGERREURMOREDATA
          urerRegErreur.strErreurDescription = "Plus de donner"
-      Case ERROR_NO_MORE_ITEMS
+      Case REGERREURNOMOREITEMS
          urerRegErreur.strErreurDescription = "Plus d'elements"
-      Case ERROR_BADDB
+      Case REGERREURBADDB
          urerRegErreur.strErreurDescription = "The configuration registry database is corrupt."
-      Case ERROR_BADKEY
+      Case REGERREURBADKEY
          urerRegErreur.strErreurDescription = "The configuration registry key is invalid."
-      Case ERROR_CANTOPEN
+      Case REGERREURCANTOPEN
          urerRegErreur.strErreurDescription = "The configuration registry key could not be opened."
-      Case ERROR_CANTREAD
+      Case REGERREURCANTREAD
          urerRegErreur.strErreurDescription = "The configuration registry key could not be read."
-      Case ERROR_CANTWRITE
+      Case REGERREURCANTWRITE
          urerRegErreur.strErreurDescription = "The configuration registry key could not be written."
-      Case ERROR_REGISTRY_RECOVERED
+      Case REGERREURREGISTRYRECOVERED
          urerRegErreur.strErreurDescription = "One of the files in the Registry database had to be recovered " & _
                    "by use of a log or alternate copy. The recovery was successful."
-      Case ERROR_REGISTRY_CORRUPT
+      Case REGERREURREGISTRYCORRUPT
          urerRegErreur.strErreurDescription = "The Registry is corrupt. The structure of one of the files that contains " & _
                    "Registry data is corrupt, or the system's image of the file in memory " & _
                    "is corrupt, or the file could not be recovered because the alternate " & _
                    "copy or log was absent or corrupt."
-      Case ERROR_REGISTRY_IO_FAILED
+      Case REGERREURREGISTRYIOFAILED
          urerRegErreur.strErreurDescription = "An I/O operation initiated by the Registry failed unrecoverably. " & _
                    "The Registry could not read in, or write out, or flush, one of the files " & _
                    "that contain the system's image of the Registry."
-      Case ERROR_NOT_REGISTRY_FILE
+      Case REGERREURNOTREGISTRYFILE
          urerRegErreur.strErreurDescription = "The system has attempted to load or restore a file into the Registry, but the " & _
                    "specified file is not in a Registry file format."
-      Case ERROR_KEY_DELETED
+      Case REGERREURKEYDELETED
          urerRegErreur.strErreurDescription = "Illegal operation attempted on a Registry key which has been marked for deletion."
-      Case ERROR_NO_LOG_SPACE
+      Case REGERREURNOLOGSPACE
          urerRegErreur.strErreurDescription = "System could not allocate the required space in a Registry log."
-      Case ERROR_KEY_HAS_CHILDREN
+      Case REGERREURKEYHASCHILDREN
          urerRegErreur.strErreurDescription = "Cannot create a symbolic link in a Registry key that already " & _
                    "has subkeys or values."
-      Case ERROR_CHILD_MUST_BE_VOLATILE
+      Case REGERREURCHILDMUSTBEVOLATILE
          urerRegErreur.strErreurDescription = "Cannot create a stable subkey under a volatile parent key."
-      Case ERROR_RXACT_INVALID_STATE
+      Case REGERREURRXACTINVALIDSTATE
          urerRegErreur.strErreurDescription = "The transaction state of a Registry subtree is incompatible with the " & _
                    "requested operation."
    End Select

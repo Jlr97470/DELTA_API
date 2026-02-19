@@ -41,8 +41,8 @@ Option Explicit                                                                 
 '******************************************************************************
 '***    Constante Qui Defini Les Libelles De La feuille en erreur                    ***
 '******************************************************************************
-Private Const mconFeuilleType = "CLASS"                                                      ' La feuille du source
-Private Const mconLOGFEUILLENOM = "clsWinRegFicApl"                                        ' Je me rapelle le nom de la Feuille
+Private Const mconFEUILLETYPE = "CLASS"                                                      ' La feuille du source
+Private Const mconFEUILLENOM = "clsWinRegFicApl"                                        ' Je me rapelle le nom de la Feuille
 
 '******************************************************************************
 '***    Constante Qui Defini L'emplacement de la class de fichier                 ***
@@ -217,7 +217,7 @@ FicIndex_Exit:
    ' Fin
 FicIndex_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEFONCTION, "FicIndex", _
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "FicIndex", _
       "", Err
    ' Je renvoie une chaine vide
    FicIndex = vbEmpty
@@ -272,7 +272,7 @@ AplIndex_Exit:
    ' Fin
 AplIndex_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEFONCTION, "AplIndex", _
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "AplIndex", _
       "", Err
    ' Je renvoie une chaine vide
    AplIndex = vbEmpty
@@ -390,7 +390,7 @@ LectureFic_Exit:
    ' Fin
 LectureFic_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEFONCTION, "LectureFic", strClsFicExtension & "," & strClsFicProgID, Err
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "LectureFic", strClsFicExtension & "," & strClsFicProgID, Err
    ' Je renvoie que j'ai bien lu
    LectureFic = False
    ' Je Continue
@@ -511,32 +511,12 @@ EcritureFic_Exit:
    ' Fin
 EcritureFic_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEFONCTION, "EcritureFic", strClsFicProgID & "," & strClsFicProgID, Err
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "EcritureFic", strClsFicProgID & "," & strClsFicProgID, Err
    ' Je renvoie que faux
    EcritureFic = False
    ' Je Continue
    Resume EcritureFic_Exit
    ' Fin
-End Function
-
-'******************************************************************************
-'***    FONCTION:                                                                                       ***
-'***     ModifieExt(ByVal strClsFicProgID As String,                                        ***
-'***     ByVal strClsFicProgID As String) As Boolean                              ***
-'******************************************************************************
-'***    FONCTION:                                                                                       ***
-'***     Pour ajouter une extension de fichier                                                ***
-'******************************************************************************
-'***    ENTREE:                                                                                          ***
-'***      strClsFicProgID           - La valeur de l'extension                                 ***
-'***      strClsFicProgID   - La reference de l'extension                            ***
-'***    SORTIE:                                                                                            ***
-'***      ModifieExt                - Retourne si l'extension a ete ajouter              ***
-'******************************************************************************
-'***    EXEMPLE:                                                                                        ***
-'***     =ModifieExt(".XXX","Fichier XXX")                                                   ***
-'******************************************************************************
-Public Function ModifieExt(ByVal strClsFicProgID As String, ByVal strClsFicProgID As String) As Boolean
 End Function
 
 '******************************************************************************
@@ -549,14 +529,14 @@ End Function
 '******************************************************************************
 '***    ENTREE:                                                                                          ***
 '***      strClsFicProgID           - La valeur de l'extension                                 ***
-'***      strClsFicProgID   - La reference de l'extension                            ***
+'***      strClsFicExtension   - La reference de l'extension                            ***
 '***    SORTIE:                                                                                            ***
 '***      AjouteExt                 - Retourne si l'extension a ete ajouter              ***
 '******************************************************************************
 '***    EXEMPLE:                                                                                        ***
 '***     =AjouteExt(".XXX","Fichier XXX")                                                   ***
 '******************************************************************************
-Public Function AjouteExt(ByVal strClsFicProgID As String, ByVal strClsFicProgID As String) As Boolean
+Public Function AjouteExt(ByVal strClsFicProgID As String, ByVal strClsFicExtension As String) As Boolean
    Dim ucfiClsFic As CLSFIC                                                                           ' Un enregistrement de la collection des extension de fichier
    Dim strrcsClassFichier As String                                                                     ' La sous cle de la base de registre
   ' En Cas D'Erreur Je Gere L'Erreur
@@ -564,7 +544,7 @@ Public Function AjouteExt(ByVal strClsFicProgID As String, ByVal strClsFicProgID
    ' Je defini l'enregistrement
    ucfiClsFic.strClsFicProgID = strClsFicProgID
    ' Je defini l'enregistrement
-   ucfiClsFic.strClsFicProgID = strClsFicProgID
+   ucfiClsFic.strClsFicExtension = strClsFicExtension
    ' Je regarde la valeur de la cle racine des extension
    Select Case mconrcsClassFichier
       Case vbNullString
@@ -587,7 +567,7 @@ Public Function AjouteExt(ByVal strClsFicProgID As String, ByVal strClsFicProgID
       Case False
          ' L'extension existe
          ' Je l'ecrit
-         AjouteExt = EcritureFic(ucfiClsFic.strClsFicProgID, ucfiClsFic.strClsFicProgID)
+         AjouteExt = EcritureFic(ucfiClsFic.strClsFicProgID, ucfiClsFic.strClsFicExtension)
    End Select
    ' Fin
 AjouteExt_Exit:
@@ -596,7 +576,7 @@ AjouteExt_Exit:
    ' Fin
 AjouteExt_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEFONCTION, "AjouteExt", strClsFicProgID & "," & strClsFicProgID, Err
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "AjouteExt", strClsFicProgID & "," & strClsFicProgID, Err
    ' Je renvoie une chaine vide
    AjouteExt = False
    ' Je Continue
@@ -680,7 +660,7 @@ SupprimeExt_Exit:
    ' Fin
 SupprimeExt_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEFONCTION, "SupprimeExt", strClsFicProgID, Err
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "SupprimeExt", strClsFicProgID, Err
    ' Je renvoie que faux
    SupprimeExt = False
    ' Je Continue
@@ -830,7 +810,7 @@ LectureApl_Exit:
    ' Fin
 LectureApl_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEFONCTION, "LectureApl", strClsAplProgID & "," & strClsAplOuvre + "," + strClsAplIcon, Err
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "LectureApl", strClsAplProgID & "," & strClsAplOuvre + "," + strClsAplIcon, Err
    ' Je renvoie que faux
    LectureApl = False
    ' Je Continue
@@ -904,9 +884,9 @@ Attribute EcritureRef.VB_Description = "Pour ecrire une reference"
          mstrClsAplCle = ucapClsApl.strClsAplProgID
    End Select
    ' Je defini l'enregistrement
-   ucapClsApl.strCLSAPLCommandOuvre = strCLSAPLCommandOuvre
+   ucapClsApl.strClsAplOuvre = strCLSAPLCommandOuvre
    ' Je defini l'enregistrement
-   ucapClsApl.strCLSAPLCommandIcon = strCLSAPLCommandIcon
+   ucapClsApl.strClsAplIcon = strCLSAPLCommandIcon
    ' Je regarde la valeur de la cle racine des extension
    Select Case mconrcsClassApplication
       Case vbNullString
@@ -923,18 +903,18 @@ Attribute EcritureRef.VB_Description = "Pour ecrire une reference"
    ' J'ecrit la cle de command icon
    mobjWinReg.EcritureCle mconrcrClassApplication, strrcsReference & "\" & mconrcsIcon
    ' J'ecrit la valeur command icon
-   mobjWinReg.EcritureValeur mconrcrClassApplication, strrcsReference & "\" & mconrcsIcon, "", ucapClsApl.strCLSAPLCommandIcon
+   mobjWinReg.EcritureValeur mconrcrClassApplication, strrcsReference & "\" & mconrcsIcon, "", ucapClsApl.strClsAplIcon
    ' Je ferme la cle de command icon
    mobjWinReg.FermeCle mconrcrClassApplication, strrcsReference & "\" & mconrcsIcon
    ' J'ecrit la cle de command ouvrir
    mobjWinReg.EcritureCle mconrcrClassApplication, _
-      strrcsReference & "\" & mconrcsShell & "\" & mconrcsOuvre & "\" & mconrcsCommand
+      strrcsReference & "\" & mconrcsBureau & "\" & mconrcsOuvre & "\" & mconrcsCommand
    ' J'ecrit la valeur command ouvrir
    EcritureRef = mobjWinReg.EcritureValeur(mconrcrClassApplication, _
-      strrcsReference & "\" & mconrcsShell & "\" & mconrcsOuvre & "\" & mconrcsCommand, "", ucapClsApl.strCLSAPLCommandOuvre)
+      strrcsReference & "\" & mconrcsBureau & "\" & mconrcsOuvre & "\" & mconrcsCommand, "", ucapClsApl.strClsAplOuvre)
    ' Je ferme la cle de command ouvrir
    mobjWinReg.FermeCle mconrcrClassApplication, _
-      strrcsReference & "\" & mconrcsShell & "\" & mconrcsOuvre & "\" & mconrcsCommand
+      strrcsReference & "\" & mconrcsBureau & "\" & mconrcsOuvre & "\" & mconrcsCommand
    ' Je regarde si je l'ai recuperer
    Select Case EcritureRef
       Case True
@@ -957,9 +937,9 @@ Attribute EcritureRef.VB_Description = "Pour ecrire une reference"
          ' Je met une chaine vide pour la reference
          ucapClsApl.strClsAplProgID = vbNullString
          ' Je met une chaine vide pour la reference
-         ucapClsApl.strCLSAPLCommandOuvre = vbNullString
+         ucapClsApl.strClsAplOuvre = vbNullString
          ' Je met une chaine vide pour la reference
-         ucapClsApl.strCLSAPLCommandIcon = vbNullString
+         ucapClsApl.strClsAplIcon = vbNullString
          ' Je met a jour l'index de cle de l'enregistrement courant de la collection
          mlngClsAplIndex = vbEmpty
          ' Je met a jour la cle de l'enregistrement courant de la collection
@@ -972,35 +952,12 @@ EcritureRef_Exit:
    ' Fin
 EcritureRef_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEFONCTION, "EcritureRef", strClsAplProgID & "," & strCLSAPLCommandOuvre & "," & strCLSAPLCommandIcon, Err
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "EcritureRef", strClsAplProgID & "," & strCLSAPLCommandOuvre & "," & strCLSAPLCommandIcon, Err
    ' Je renvoie que faux
    EcritureRef = False
    ' Je Continue
    Resume EcritureRef_Exit
    ' Fin
-End Function
-
-'******************************************************************************
-'***    FONCTION:                                                                                       ***
-'***     ModifieRef(ByVal strClsAplProgID As String,                                      ***
-'***     ByVal strCLSAPLCommandOuvre As String,                                      ***
-'***     ByVal strCLSAPLCommandIcon As String) As Boolean                       ***
-'******************************************************************************
-'***    FONCTION:                                                                                       ***
-'***     Pour Modifier une reference application                                            ***
-'******************************************************************************
-'***    ENTREE:                                                                                          ***
-'***      strClsAplProgID                     - La nom  de la reference                      ***
-'***      strCLSAPLCommandOuvre    - La command ouvrir de la reference     ***
-'***      strCLSAPLCommandIcon    - La command ouvrir de la reference        ***
-'***    SORTIE:                                                                                           ***
-'***      ModifieRef                            - Retourne si la reference a ete ajouter***
-'******************************************************************************
-'***    EXEMPLE:                                                                                        ***
-'***     Me.ModifieRef("Fichier XXX","C:\COMMAND.COM %1",                     ***
-'***     "C:\COMMAND.COM,1")                                                                    ***
-'******************************************************************************
-Public Function ModifieRef(ByVal strClsAplProgID As String, ByVal strCLSAPLCommandOuvre As String, ByVal strCLSAPLCommmandIcon As String) As Boolean
 End Function
 
 '******************************************************************************
@@ -1031,9 +988,9 @@ Public Function AjouteRef(ByVal strClsAplProgID As String, ByVal strCLSAPLComman
    ' Je defini l'enregistrement
    urappCLSAPL.strClsAplProgID = strClsAplProgID
    ' Je defini l'enregistrement
-   urappCLSAPL.strCLSAPLCommandOuvre = strCLSAPLCommandOuvre
+   urappCLSAPL.strClsAplOuvre = strCLSAPLCommandOuvre
    ' Je defini l'enregistrement
-   urappCLSAPL.strCLSAPLCommandIcon = strCLSAPLCommandIcon
+   urappCLSAPL.strClsAplIcon = strCLSAPLCommandIcon
    ' Je regarde la valeur de la cle racine des extension
    Select Case mconrcsClassApplication
       Case vbNullString
@@ -1056,7 +1013,7 @@ Public Function AjouteRef(ByVal strClsAplProgID As String, ByVal strCLSAPLComman
       Case False
          ' L'extension n'existe pas
          ' Je l'ecrit
-         AjouteRef = EcritureRef(urappCLSAPL.strClsAplProgID, urappCLSAPL.strCLSAPLCommandOuvre, urappCLSAPL.strCLSAPLCommandIcon)
+         AjouteRef = EcritureRef(urappCLSAPL.strClsAplProgID, urappCLSAPL.strClsAplOuvre, urappCLSAPL.strClsAplIcon)
    End Select
    ' Fin
 AjouteRef_Exit:
@@ -1065,7 +1022,7 @@ AjouteRef_Exit:
    ' Fin
 AjouteRef_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEFONCTION, "AjouteRef", strClsAplProgID & "," & strCLSAPLCommandOuvre + "," + strCLSAPLCommandIcon, Err
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "AjouteRef", strClsAplProgID & "," & strCLSAPLCommandOuvre + "," + strCLSAPLCommandIcon, Err
    ' Je renvoie une chaine vide
    AjouteRef = False
    ' Je Continue
@@ -1120,22 +1077,22 @@ Public Function SupprimeRef(ByVal strClsAplProgID As String) As Boolean
          End Select
          ' J'ouvre la cle command
          mobjWinReg.OuvreCle mconrcrClassApplication, _
-            strrcsReference & "\" & mconrcsShell & "\" & mconrcsOuvre & "\" & mconrcsCommand
+            strrcsReference & "\" & mconrcsBureau & "\" & mconrcsOuvre & "\" & mconrcsCommand
          ' Je supprime la cle command
          mobjWinReg.SupprimeCle mconrcrClassApplication, _
-            strrcsReference & "\" & mconrcsShell & "\" & mconrcsOuvre & "\" & mconrcsCommand
+            strrcsReference & "\" & mconrcsBureau & "\" & mconrcsOuvre & "\" & mconrcsCommand
          ' J'ouvre la cle ouvre
          mobjWinReg.OuvreCle mconrcrClassApplication, _
-            strrcsReference & "\" & mconrcsShell & "\" & mconrcsOuvre
+            strrcsReference & "\" & mconrcsBureau & "\" & mconrcsOuvre
          ' Je supprime la cle ouvre
          mobjWinReg.SupprimeCle mconrcrClassApplication, _
-            strrcsReference & "\" & mconrcsShell & "\" & mconrcsOuvre
+            strrcsReference & "\" & mconrcsBureau & "\" & mconrcsOuvre
          ' J'ouvre la cle shell
          mobjWinReg.OuvreCle mconrcrClassApplication, _
-            strrcsReference & "\" & mconrcsShell
+            strrcsReference & "\" & mconrcsBureau
          ' Je supprime la cle shell
          mobjWinReg.SupprimeCle mconrcrClassApplication, _
-            strrcsReference & "\" & mconrcsShell
+            strrcsReference & "\" & mconrcsBureau
          ' J'ouvre la cle icon
          mobjWinReg.OuvreCle mconrcrClassApplication, strrcsReference & "\" & mconrcsIcon
          ' Je supprime la cle icon
@@ -1154,9 +1111,9 @@ Public Function SupprimeRef(ByVal strClsAplProgID As String) As Boolean
          ' Je defini l'enregistrement
          ucapClsApl.strClsAplProgID = vbNullString
          ' Je met une chaine vide pour la reference
-         ucapClsApl.strCLSAPLCommandOuvre = vbNullString
+         ucapClsApl.strClsAplOuvre = vbNullString
          ' Je met une chaine vide pour la reference
-         ucapClsApl.strCLSAPLCommandIcon = vbNullString
+         ucapClsApl.strClsAplIcon = vbNullString
          ' Je met a jour l'index de cle de l'enregistrement courant de la collection
          mlngClsAplIndex = vbEmpty
          ' Je met a jour la cle de l'enregistrement courant de la collection
@@ -1173,7 +1130,7 @@ SupprimeRef_Exit:
    ' Fin
 SupprimeRef_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEFONCTION, "SupprimeRef", strClsAplProgID, Err
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "SupprimeRef", strClsAplProgID, Err
    ' Je renvoie que faux
    SupprimeRef = False
    ' Je Continue
@@ -1218,7 +1175,7 @@ Enumere_Exit:
    ' Fin
 Enumere_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEFONCTION, "Enumere", "", Err
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "Enumere", "", Err
    ' Je renvoie une chaine vide
    Enumere = False
    ' Je Continue
@@ -1251,7 +1208,7 @@ Private Sub Class_Initialize()
    ' J'initialise la collection de reference application
    Set mcolClsApl = New Collection
    ' Jinitialise l'object registre
-   Set mobjWinReg = New WinReg
+   Set mobjWinReg = New ClsWinReg
 End Sub
 
 '******************************************************************************
@@ -1310,7 +1267,7 @@ FicCompte_Exit:
    ' Fin
 FicCompte_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEPROPRIETE, "FicCompte", "", Err
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEPROPRIETE, "FicCompte", "", Err
    ' Je renvoie zero a l'user
    FicCompte = vbEmpty
    ' Je Continue
@@ -1368,7 +1325,7 @@ Fic_Exit:
    ' Fin
 Fic_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEPROPRIETE, "Fic", CStr(lngClsFicIndex), Err
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEPROPRIETE, "Fic", CStr(lngClsFicIndex), Err
    ' Je renvoie une chaine vide
    Fic = ucfiClsFic
    ' Je Continue
@@ -1403,7 +1360,7 @@ AplCompte_Exit:
    ' Fin
 AplCompte_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEPROPRIETE, "AplCompte", "", Err
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEPROPRIETE, "AplCompte", "", Err
    ' Je renvoie zero a l'user
    AplCompte = vbEmpty
    ' Je Continue
@@ -1461,7 +1418,7 @@ Apl_Exit:
    ' Fin
 Apl_Erreur:
    ' Je l'ecrit dans le journal
-   gobjLogDeltaApi.AjouteErreur App, mconLOGFEUILLETYPE, mconLOGFEUILLENOM, LIBELLEPROPRIETE, "Apl", CStr(lngClsAplIndex), Err
+   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEPROPRIETE, "Apl", CStr(lngClsAplIndex), Err
    ' Je renvoie une chaine vide
    Apl = ucapClsApl
    ' Je Continue
@@ -1487,13 +1444,13 @@ Private Sub mobjWinReg_CleEnumerer(ByRef urclRegCle As REGCLE)
    Dim ucfiClsFic As CLSFIC                                                                      ' Un enregistrement de la collection des extension de fichier
    Dim ucapClsApl As CLSAPL                                                                   ' Un enregistrement de la collection des reference application
    ' Je regarde si elle est valide
-   Select Case Left$(urclRegCle.strRegCleSous, 1)
+   Select Case Left$(urclRegCle.colCleSous(0), 1)
       Case vbNullString, "*"
          ' C'est la valeur default ou tous fichier
       Case "."
          ' C'est une extension valide
          ' Je recupere l'extension
-         ucfiClsFic.strClsFicExtension = urclRegCle.strRegCleSous
+         ucfiClsFic.strClsFicExtension = urclRegCle.colCleSous(0)
          ' Je regarde si l'extension a une reference
          Select Case LectureFic(ucfiClsFic.strClsFicExtension, ucfiClsFic.strClsFicProgID)
             Case True
@@ -1506,7 +1463,7 @@ Private Sub mobjWinReg_CleEnumerer(ByRef urclRegCle As REGCLE)
       Case Else
          ' C'est une reference non valide
          ' Je recupere l'extension
-         ucapClsApl.strClsAplProgID = urclRegCle.strRegCleSous
+         ucapClsApl.strClsAplProgID = urclRegCle.colCleSous(0)
          ' Je regarde si l'extension a une reference
          Select Case LectureApl(ucapClsApl.strClsAplProgID, ucapClsApl.strClsAplOuvre, ucapClsApl.strClsAplIcon)
             Case True

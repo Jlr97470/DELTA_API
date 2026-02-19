@@ -38,8 +38,8 @@ Option Explicit                                                                 
 '******************************************************************************
 '***    Constante Qui Defini Les Libelles De La feuille en erreur                    ***
 '******************************************************************************
-Private Const mconFeuilleType = "CLASS"                                                     ' La feuille du source
-Private Const mconLOGFEUILLENOM = "ClsPanneauIco"                                          ' Je me rapelle le nom de la Feuille
+Private Const mconFEUILLETYPE = "CLASS"                                                     ' La feuille du source
+Private Const mconFEUILLENOM = "ClsPanneauIco"                                          ' Je me rapelle le nom de la Feuille
 
 '******************************************************************************
 '***    Declaration De Constante Public                                                       ***
@@ -92,7 +92,7 @@ End Enum
 
 
 'Private Const TRAY_CALLBACK = (WM_USER + 1001&)
-
+'
 'Public Sub AddIconToTray(inWinState As Integer, inFormhwnd As Long, inFormIconHandle As Long, inTip As String)
 '    theFormWinState = inWinState
 '    theWindProc = SetWindowLong(inFormhwnd, GWL_WNDPROC, AddressOf NewWindowProc)
