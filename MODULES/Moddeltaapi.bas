@@ -30,6 +30,7 @@ Option Explicit
 Public Const LIBELLEPROCEDURE = "Procedure"
 Public Const LIBELLEFONCTION = "Fonction"
 Public Const LIBELLEPROPRIETE = "Propriété"
+Public Const LIBELLEEVENEMENT = "Evenement"
 '******************************************************************************
 '***    Object Pour La  Gestion D'un Fichier Journal                                      ***
 '******************************************************************************

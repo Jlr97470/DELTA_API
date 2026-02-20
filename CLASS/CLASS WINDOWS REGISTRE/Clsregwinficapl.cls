@@ -6,7 +6,7 @@ BEGIN
   DataSourceBehavior  = 0  'vbNone
   MTSTransactionMode  = 0  'NotAnMTSObject
 END
-Attribute VB_Name = "RegWinFicApl"
+Attribute VB_Name = "ClsRegWinFicApl"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
@@ -150,7 +150,7 @@ Private mcolClsApl As Collection
 '******************************************************************************
 '***    Object Pour La  Gestion Du Registre Windows                                    ***
 '******************************************************************************
-Public mobjWinReg   As RegWin                                                     ' L'object pour la gestion du registre windows
+Public mobjWinReg As clsRegWin                                                     ' L'object pour la gestion du registre windows
 Attribute mobjWinReg.VB_VarHelpID = -1
 
 '******************************************************************************
@@ -1208,7 +1208,7 @@ Private Sub Class_Initialize()
    ' J'initialise la collection de reference application
    Set mcolClsApl = New Collection
    ' Jinitialise l'object registre
-   Set mobjWinReg = New ClsWinReg
+   Set mobjWinReg = New clsRegWin
 End Sub
 
 '******************************************************************************
