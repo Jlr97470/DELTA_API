@@ -38,8 +38,7 @@ Option Explicit                                                                 
 '******************************************************************************
 '***    Constante Qui Defini Les Libelles De La feuille en erreur                    ***
 '******************************************************************************
-Private Const mconFEUILLETYPE = "CLASS"                                                     ' La feuille du source
-Private Const mconFEUILLENOM = "ClsPanneauIco"                                          ' Je me rapelle le nom de la Feuille
+Private Const LOGFEUILLENOM = "ClsPanneauIco"                                          ' Je me rapelle le nom de la Feuille
 
 '******************************************************************************
 '***    Declaration De Constante Public                                                       ***

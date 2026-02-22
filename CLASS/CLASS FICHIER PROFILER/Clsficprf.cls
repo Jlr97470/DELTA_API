@@ -45,7 +45,7 @@ Option Explicit
 '***    Constante Qui Defini Les Libelles De La feuille en erreur                    ***
 '******************************************************************************
 Private Const LOGFEUILLENOM = "clsFicPrf"                                                    ' Je me rapelle le nom de la Feuille
-Private Const LOGFEUILLETYPE = "CLASS"
+
 
 '******************************************************************************
 '***    Declaration De Fonction Priver Externe                                             ***
@@ -155,7 +155,7 @@ LectureValeur_Exit:
    ' Fin
 LectureValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, LOGFEUILLETYPE, LOGFEUILLENOM, LIBELLEFONCTION, "LectureValeur", _
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "LectureValeur", _
       strPrfSection & "," & strPrfCle & "," & strPrfValeurDefaut & "," & strPrfFichier, Err
    'Je renvoie que la valeur n'a pas ete lu
    LectureValeur = False
@@ -198,7 +198,7 @@ EcritureValeur_Exit:
    ' Fin
 EcritureValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, LOGFEUILLETYPE, LOGFEUILLENOM, LIBELLEFONCTION, "EcritureValeur", _
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "EcritureValeur", _
       strPrfSection & "," & strPrfCle & "," & strPrfValeur & "," & strPrfFichier, Err
    'Je renvoie que la valeur n'a pas ete ecrit
    EcritureValeur = False
@@ -236,7 +236,7 @@ Class_Initialize_Exit:
    ' Fin
 Class_Initialize_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, LOGFEUILLETYPE, LOGFEUILLENOM, LIBELLEPROCEDURE, "Class_Initialize", vbNullString, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEPROCEDURE, "Class_Initialize", vbNullString, Err
    ' Je Continue
    Resume Class_Initialize_Exit
    ' Fin
@@ -267,7 +267,7 @@ Class_Terminate_Exit:
    ' Fin
 Class_Terminate_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, LOGFEUILLETYPE, LOGFEUILLENOM, LIBELLEPROCEDURE, "Class_Terminate", vbNullString, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEPROCEDURE, "Class_Terminate", vbNullString, Err
    ' Je Continue
    Resume Class_Terminate_Exit
    ' Fin

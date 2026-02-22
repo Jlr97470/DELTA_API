@@ -58,9 +58,6 @@ Private Const LOGFEUILLE = "FEUILLE"
 Private Const LOGTYPE = "TYPE"
 Private Const LOGNOM = "NOM"
 Private Const LOGINSTRUCTION = "INSTRUCTION"
-Private Const LOGPROPRIETE = "PROPRIETE"
-Private Const LOGFONCTION = "FONCTION"
-Private Const LOGPROCEDURE = "PROCEDURE"
 Private Const LOGEVENEMENT = "EVENEMENT"
 Private Const LOGPARAMETRE = "PARAMETRE"
 Private Const LOGERREUR = "ERREUR"
@@ -90,7 +87,7 @@ Public Enum LOGINSTRUCTIONTYPEENUM
    INSTRUCTIONFONCTION
    INSTRUCTIONPROCEDURE
    INSTRUCTIONEVENEMENT
-   INSTRUCTIONPROPRIETER
+   INSTRUCTIONPROPRIETE
 End Enum
 
 '******************************************************************************
@@ -243,7 +240,7 @@ Lecture_Exit:
    ' Fin
 Lecture_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGFONCTION, "Lecture", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "Lecture", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie que je n'est pas lu l'enregistrement
    Lecture = False
    ' Je Continue
@@ -331,7 +328,7 @@ Ecriture_Exit:
    ' Fin
 Ecriture_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGFONCTION, "Ecriture", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "Ecriture", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie que je n 'ai pas ecrit l'enregistrement
    Ecriture = False
    ' Je Continue
@@ -401,7 +398,7 @@ Ouvre_Exit:
    ' Fin
 Ouvre_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGFONCTION, "Ouvre", strFichier, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "Ouvre", strFichier, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je me rapelle que je n'ai pas ouvert le fichier
    Ouvre = False
    ' Je Continue
@@ -460,7 +457,7 @@ Ferme_Exit:
    ' Fin
 Ferme_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGFONCTION, "Ferme", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "Ferme", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je n'ai pas fermer le fichier
    Ferme = False
    ' Je Continue
@@ -524,7 +521,7 @@ Premier_Exit:
    ' Fin
 Premier_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGFONCTION, "Premier", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "Premier", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie que je ne suis pas sur le dernier enregistrement
    Premier = False
    ' Je Continue
@@ -588,7 +585,7 @@ Dernier_Exit:
    ' Fin
 Dernier_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGFONCTION, "Dernier", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "Dernier", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie que je ne suis pas sur le dernier enregistrement
    Dernier = False
    ' Je Continue
@@ -659,7 +656,7 @@ Precedent_Exit:
    ' Fin
 Precedent_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGFONCTION, "Precedent", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "Precedent", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie que je ne suis pas sur le dernier enregistrement
    Precedent = False
    ' Je Continue
@@ -730,7 +727,7 @@ Suivant_Exit:
    ' Fin
 Suivant_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGFONCTION, "Suivant", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "Suivant", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie que je ne suis pas sur le dernier enregistrement
    Suivant = False
    ' Je Continue
@@ -957,7 +954,7 @@ Initialise_Exit:
    ' Fin
 Initialise_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "Initialise", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "Initialise", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume Initialise_Exit
    ' Fin
@@ -1000,7 +997,7 @@ Nouvelle_Exit:
    ' Fin
 Nouvelle_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "Nouvelle", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "Nouvelle", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume Nouvelle_Exit
    ' Fin
@@ -1049,7 +1046,7 @@ LectureDeltaApiVersion_Exit:
    ' Fin
 LectureDeltaApiVersion_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "LectureDeltaApiVersion", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "LectureDeltaApiVersion", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume LectureDeltaApiVersion_Exit
    ' Fin
@@ -1091,7 +1088,7 @@ EcritureDeltaApiVersion_Exit:
    ' Fin
 EcritureDeltaApiVersion_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "EcritureDeltaApiVersion", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "EcritureDeltaApiVersion", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume EcritureDeltaApiVersion_Exit
    ' Fin
@@ -1144,7 +1141,7 @@ LectureApplication_Exit:
    ' Fin
 LectureApplication_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "LectureApplication", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "LectureApplication", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume LectureApplication_Exit
    ' Fin
@@ -1189,7 +1186,7 @@ EcritureApplication_Exit:
    ' Fin
 EcritureApplication_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "EcritureApplication", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "EcritureApplication", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume EcritureApplication_Exit
    ' Fin
@@ -1242,7 +1239,7 @@ LectureFeuille_Exit:
    ' Fin
 LectureFeuille_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "LectureFeuille", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "LectureFeuille", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume LectureFeuille_Exit
    ' Fin
@@ -1287,7 +1284,7 @@ EcritureFeuille_Exit:
    ' Fin
 EcritureFeuille_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "EcritureFeuille", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "EcritureFeuille", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume EcritureFeuille_Exit
    ' Fin
@@ -1354,7 +1351,7 @@ LectureInstruction_Exit:
    ' Fin
 LectureInstruction_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "LectureInstruction", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "LectureInstruction", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume LectureInstruction_Exit
    ' Fin
@@ -1433,7 +1430,7 @@ EcritureInstruction_Exit:
    ' Fin
 EcritureInstruction_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "EcritureInstruction", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "EcritureInstruction", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume EcritureInstruction_Exit
    ' Fin
@@ -1500,7 +1497,7 @@ LectureErreur_Exit:
    ' Fin
 LectureErreur_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "LectureErreur", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "LectureErreur", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume LectureErreur_Exit
    ' Fin
@@ -1631,7 +1628,7 @@ EcritureErreur_Exit:
    ' Fin
 EcritureErreur_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "EcritureErreur", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "EcritureErreur", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume EcritureErreur_Exit
    ' Fin
@@ -1684,7 +1681,7 @@ LectureDate_Exit:
    ' Fin
 LectureDate_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "LectureDate", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "LectureDate", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume LectureDate_Exit
    ' Fin
@@ -1729,7 +1726,7 @@ EcritureDate_Exit:
    ' Fin
 EcritureDate_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "EcritureDate", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "EcritureDate", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume EcritureDate_Exit
    ' Fin
@@ -1755,51 +1752,51 @@ End Sub
 '******************************************************************************
 '***    EXEMPLE:                                                                                        ***
 '***      AfficheErreur App.EXEName, vbnullstring, conFEUILLECLASS,              ***
-'***      conLOGFEUILLENOM,conLOGPROCEDURE, "EcritureDate", vbnullstring,    ***
+'***      conLOGFEUILLENOM,conINSTRUCTIONPROCEDURE, "EcritureDate", vbnullstring,    ***
 '***      CStr(Err.Number),                                                                           ***
 '***      Err.Description, vbnullstring, vbnullstring                                       ***
 '******************************************************************************
-Private Sub AfficheErreur(ByVal strApplicationNom As String, ByVal strApplicationVersion As String, ByVal intFeuilleType As Integer, _
-   ByVal strLOGFEUILLENOM As String, ByVal IntInstructionType As Integer, ByVal strInstructionNom As String, _
+Private Sub AfficheErreur(ByVal strApplicationNom As String, ByVal strApplicationVersion As String, ByVal intFeuilleType As LOGFEUILLETYPETYPEENUM, _
+   ByVal strFeuilleNom As String, ByVal IntInstructionType As LOGINSTRUCTIONTYPEENUM, ByVal strInstructionNom As String, _
    ByVal strInstructionParametre As String, ByVal strErreurNumero As String, ByVal strErreurDescription As String, _
    ByVal strDateJour As String, ByVal strDateHeure As String)
-   Dim strErreurMessage(12) As String * 40
+   Dim strErreurMessage(13) As String
    ' Je Gere pas l'erreur
    On Error Resume Next
    ' Je defini la premiere ligne du message d'erreur
-   strErreurMessage(0) = LOGAPPLICATION & ":"
+   strErreurMessage(0) = LOGAPPLICATION & ":" & vbCrLf
    ' Je defini la premiere ligne du message d'erreur
-   strErreurMessage(0) = strErreurMessage(0) & String(10 - Len(strErreurMessage(0)), " ") & LOGFEUILLE & ":" & vbCrLf
+   strErreurMessage(1) = LOGFEUILLE & ":" & vbCrLf
    ' Je defini la deuxieme ligne du message d'erreur
-   strErreurMessage(1) = LOGNOM & ":" & strApplicationNom
+   strErreurMessage(1) = LOGNOM & ":" & strApplicationNom & vbCrLf
    ' Je defini la deuxieme ligne du message d'erreur
-   strErreurMessage(1) = strErreurMessage(1) & String(10 - Len(strErreurMessage(1)), " ") & LOGTYPE & ":" & intFeuilleType & vbCrLf
+   strErreurMessage(2) = LOGTYPE & ":" & intFeuilleType & vbCrLf
    ' Je defini la troisieme ligne du message d'erreur
-   strErreurMessage(2) = LOGVERSION & ":" & strApplicationVersion
+   strErreurMessage(3) = LOGVERSION & ":" & strApplicationVersion & vbCrLf
    ' Je defini la troisieme ligne du message d'erreur
-   strErreurMessage(2) = strErreurMessage(2) & String(10 - Len(strErreurMessage(2)), " ") & LOGNOM & ":" & strLOGFEUILLENOM & vbCrLf & vbCrLf
+   strErreurMessage(4) = LOGNOM & ":" & strFeuilleNom & vbCrLf & vbCrLf
    ' Je defini la quatrieme ligne du message d'erreur
-   strErreurMessage(3) = LOGINSTRUCTION & ":" & vbCrLf
+   strErreurMessage(5) = LOGINSTRUCTION & ":" & vbCrLf
    ' Je defini la cinquieme ligne du message d'erreur
-   strErreurMessage(4) = LOGTYPE & ":" & IntInstructionType & vbCrLf
+   strErreurMessage(6) = LOGTYPE & ":" & IntInstructionType & vbCrLf
    ' Je defini la sixieme ligne du message d'erreur
-   strErreurMessage(5) = LOGNOM & ":" & strInstructionNom & vbCrLf
+   strErreurMessage(7) = LOGNOM & ":" & strInstructionNom & vbCrLf
    ' Je defini la septieme ligne du message d'erreur
-   strErreurMessage(6) = LOGPARAMETRE & ":" & strInstructionParametre & vbCrLf & vbCrLf
+   strErreurMessage(8) = LOGPARAMETRE & ":" & strInstructionParametre & vbCrLf & vbCrLf
    ' Je defini la huitieme ligne du message d'erreur
-   strErreurMessage(7) = LOGERREUR & ":" & vbCrLf
+   strErreurMessage(9) = LOGERREUR & ":" & vbCrLf
    ' Je defini la neuvieme ligne du message d'erreur
-   strErreurMessage(8) = LOGNUMERO & ":" & strErreurNumero & vbCrLf
+   strErreurMessage(10) = LOGNUMERO & ":" & strErreurNumero & vbCrLf
    ' Je defini la dixieme ligne du message d'erreur
-   strErreurMessage(9) = LOGDESCRIPTION & ":" & strErreurDescription & vbCrLf & vbCrLf
+   strErreurMessage(11) = LOGDESCRIPTION & ":" & strErreurDescription & vbCrLf & vbCrLf
    ' Je defini la onzieme ligne du message d'erreur
-   strErreurMessage(10) = LOGJOUR & ":" & strDateJour & vbCrLf
+   strErreurMessage(12) = LOGJOUR & ":" & strDateJour & vbCrLf
    ' Je defini la douzieme ligne du message d'erreur
-   strErreurMessage(11) = LOGHEURE & ":" & strDateHeure & vbCrLf
+   strErreurMessage(13) = LOGHEURE & ":" & strDateHeure & vbCrLf
    ' J'AfficheErreur L'Erreur A L'user
    MsgBox strErreurMessage(0) & strErreurMessage(1) & strErreurMessage(2) & strErreurMessage(3) & strErreurMessage(4) & _
              strErreurMessage(5) & strErreurMessage(6) & strErreurMessage(7) & strErreurMessage(8) & strErreurMessage(9) & _
-             strErreurMessage(10) & strErreurMessage(11) _
+             strErreurMessage(10) & strErreurMessage(11) & strErreurMessage(12) & strErreurMessage(13) _
              , , strApplicationNom & " " & strApplicationVersion & " " & App.EXEName & " " & App.Major & "." & App.Minor & "." & App.Revision
    ' Fin
 AfficheErreur_Exit:
@@ -1840,7 +1837,7 @@ DeltaApiVersion_Exit:
    ' Fin
 DeltaApiVersion_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "DeltaApiVersion", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "DeltaApiVersion", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie une chaine vide
    DeltaApiVersion = vbNullString
    ' Je Continue
@@ -1875,7 +1872,7 @@ DeltaApiVersion_Exit:
    ' Fin
 DeltaApiVersion_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "DeltaApiVersion", strDeltaApiVersion, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "DeltaApiVersion", strDeltaApiVersion, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume DeltaApiVersion_Exit
    ' Fin
@@ -1909,7 +1906,7 @@ ApplicationNom_Exit:
    ' Fin
 ApplicationNom_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "ApplicationNom", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "ApplicationNom", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie une chaine vide
    ApplicationNom = vbNullString
    ' Je Continue
@@ -1944,7 +1941,7 @@ ApplicationNom_Exit:
    ' Fin
 ApplicationNom_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "ApplicationNom", strApplicationNom, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "ApplicationNom", strApplicationNom, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume ApplicationNom_Exit
    ' Fin
@@ -1978,7 +1975,7 @@ ApplicationVersion_Exit:
    ' Fin
 ApplicationVersion_Erreur:
    ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "ApplicationVersion", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "ApplicationVersion", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie une chaine vide
    ApplicationVersion = vbNullString
    ' Je Continue
@@ -2013,7 +2010,7 @@ ApplicationVersion_Exit:
    ' Fin
 ApplicationVersion_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "ApplicationVersion", strApplicationVersion, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "ApplicationVersion", strApplicationVersion, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume ApplicationVersion_Exit
    ' Fin
@@ -2047,7 +2044,7 @@ FeuilleType_Exit:
     ' Fin
 FeuilleType_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "FeuilleType", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "FeuilleType", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie une chaine vide
    FeuilleType = vbNullString
     ' Je Continue
@@ -2082,7 +2079,7 @@ FeuilleType_Exit:
     ' Fin
 FeuilleType_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "FeuilleType", intFeuilleType, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "FeuilleType", intFeuilleType, CStr(Err.Number), Err.Description, vbNullString, vbNullString
     ' Je Continue
     Resume FeuilleType_Exit
     ' Fin
@@ -2116,7 +2113,7 @@ LOGFEUILLENOM_Exit:
     ' Fin
 LOGFEUILLENOM_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "LOGFEUILLENOM", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "LOGFEUILLENOM", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie une chaine vide
    LOGFEUILLENOM = vbNullString
     ' Je Continue
@@ -2151,7 +2148,7 @@ LOGFEUILLENOM_Exit:
     ' Fin
 LOGFEUILLENOM_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "LOGFEUILLENOM", strLOGFEUILLENOM, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "LOGFEUILLENOM", strLOGFEUILLENOM, CStr(Err.Number), Err.Description, vbNullString, vbNullString
     ' Je Continue
     Resume LOGFEUILLENOM_Exit
     ' Fin
@@ -2185,7 +2182,7 @@ InstructionType_Exit:
     ' Fin
 InstructionType_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "InstructionType", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "InstructionType", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie une chaine vide
    InstructionType = vbNullString
     ' Je Continue
@@ -2220,7 +2217,7 @@ InstructionType_Exit:
     ' Fin
 InstructionType_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "InstructionType", IntInstructionType, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "InstructionType", IntInstructionType, CStr(Err.Number), Err.Description, vbNullString, vbNullString
     ' Je Continue
     Resume InstructionType_Exit
     ' Fin
@@ -2254,7 +2251,7 @@ InstructionNom_Exit:
     ' Fin
 InstructionNom_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "InstructionNom", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "InstructionNom", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie une chaine vide
    InstructionNom = vbNullString
     ' Je Continue
@@ -2289,7 +2286,7 @@ InstructionNom_Exit:
     ' Fin
 InstructionNom_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "InstructionNom", strInstructionNom, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "InstructionNom", strInstructionNom, CStr(Err.Number), Err.Description, vbNullString, vbNullString
     ' Je Continue
     Resume InstructionNom_Exit
     ' Fin
@@ -2323,7 +2320,7 @@ InstructionParametre_Exit:
     ' Fin
 InstructionParametre_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "InstructionParametre", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "InstructionParametre", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie une chaine vide
    InstructionParametre = vbNullString
     ' Je Continue
@@ -2358,7 +2355,7 @@ InstructionParametre_Exit:
     ' Fin
 InstructionParametre_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "InstructionParametre", strInstructionParametre, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "InstructionParametre", strInstructionParametre, CStr(Err.Number), Err.Description, vbNullString, vbNullString
     ' Je Continue
     Resume InstructionParametre_Exit
     ' Fin
@@ -2392,7 +2389,7 @@ ErreurNumero_Exit:
     ' Fin
 ErreurNumero_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "ErreurNumero", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "ErreurNumero", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie une chaine vide
    ErreurNumero = vbNullString
     ' Je Continue
@@ -2427,7 +2424,7 @@ ErreurNumero_Exit:
     ' Fin
 ErreurNumero_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "ErreurNumero", strErreurNumero, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "ErreurNumero", strErreurNumero, CStr(Err.Number), Err.Description, vbNullString, vbNullString
     ' Je Continue
     Resume ErreurNumero_Exit
     ' Fin
@@ -2461,7 +2458,7 @@ ErreurDescription_Exit:
     ' Fin
 ErreurDescription_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "ErreurDescription", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "ErreurDescription", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie une chaine vide
    ErreurDescription = vbNullString
     ' Je Continue
@@ -2496,7 +2493,7 @@ ErreurDescription_Exit:
     ' Fin
 ErreurDescription_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-    AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "ErreurDescription", strErreurDescription, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+    AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "ErreurDescription", strErreurDescription, CStr(Err.Number), Err.Description, vbNullString, vbNullString
     ' Je Continue
     Resume ErreurDescription_Exit
     ' Fin
@@ -2530,7 +2527,7 @@ DateJour_Exit:
     ' Fin
 DateJour_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "DateJour", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "DateJour", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie une chaine vide
    DateJour = vbNullString
     ' Je Continue
@@ -2565,7 +2562,7 @@ DateJour_Exit:
     ' Fin
 DateJour_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "DateJour", strDateJour, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "DateJour", strDateJour, CStr(Err.Number), Err.Description, vbNullString, vbNullString
     ' Je Continue
     Resume DateJour_Exit
     ' Fin
@@ -2599,7 +2596,7 @@ DateHeure_Exit:
     ' Fin
 DateHeure_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "DateHeure", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "DateHeure", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je renvoie une chaine vide
    DateHeure = vbNullString
     ' Je Continue
@@ -2634,7 +2631,7 @@ DateHeure_Exit:
     ' Fin
 DateHeure_Erreur:
     ' J'AfficheErreur L'Erreur A L'user
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROPRIETE, "DateHeure", strDateHeure, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "DateHeure", strDateHeure, CStr(Err.Number), Err.Description, vbNullString, vbNullString
     ' Je Continue
     Resume DateHeure_Exit
     ' Fin
@@ -2669,7 +2666,7 @@ Class_Initialize_Exit:
    ' Fin
 Class_Initialize_Erreur:
    ' Je l'ecrit dans le journal
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "Class_Initialize", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "Class_Initialize", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume Class_Initialize_Exit
    ' Fin
@@ -2700,7 +2697,7 @@ Class_Terminate_Exit:
    ' Fin
 Class_Terminate_Erreur:
    ' Je l'ecrit dans le journal
-   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, LOGPROCEDURE, "Class_Terminate", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
+   AfficheErreur App.EXEName, vbNullString, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "Class_Terminate", vbNullString, CStr(Err.Number), Err.Description, vbNullString, vbNullString
    ' Je Continue
    Resume Class_Terminate_Exit
    ' Fin

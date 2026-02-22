@@ -41,8 +41,7 @@ Option Explicit                                                                 
 '******************************************************************************
 '***    Constante Qui Defini Les Libelles De La feuille en erreur                    ***
 '******************************************************************************
-Private Const mconFEUILLETYPE = "CLASS"                                                      ' La feuille du source
-Private Const mconFEUILLENOM = "clsWinRegFicApl"                                        ' Je me rapelle le nom de la Feuille
+Private Const LOGFEUILLENOM = "clsWinRegFicApl"                                        ' Je me rapelle le nom de la Feuille
 
 '******************************************************************************
 '***    Constante Qui Defini L'emplacement de la class de fichier                 ***
@@ -217,7 +216,7 @@ FicIndex_Exit:
    ' Fin
 FicIndex_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "FicIndex", _
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "FicIndex", _
       "", Err
    ' Je renvoie une chaine vide
    FicIndex = vbEmpty
@@ -272,7 +271,7 @@ AplIndex_Exit:
    ' Fin
 AplIndex_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "AplIndex", _
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "AplIndex", _
       "", Err
    ' Je renvoie une chaine vide
    AplIndex = vbEmpty
@@ -390,7 +389,7 @@ LectureFic_Exit:
    ' Fin
 LectureFic_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "LectureFic", strClsFicExtension & "," & strClsFicProgID, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "LectureFic", strClsFicExtension & "," & strClsFicProgID, Err
    ' Je renvoie que j'ai bien lu
    LectureFic = False
    ' Je Continue
@@ -511,7 +510,7 @@ EcritureFic_Exit:
    ' Fin
 EcritureFic_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "EcritureFic", strClsFicProgID & "," & strClsFicProgID, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "EcritureFic", strClsFicProgID & "," & strClsFicProgID, Err
    ' Je renvoie que faux
    EcritureFic = False
    ' Je Continue
@@ -576,7 +575,7 @@ AjouteExt_Exit:
    ' Fin
 AjouteExt_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "AjouteExt", strClsFicProgID & "," & strClsFicProgID, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "AjouteExt", strClsFicProgID & "," & strClsFicProgID, Err
    ' Je renvoie une chaine vide
    AjouteExt = False
    ' Je Continue
@@ -660,7 +659,7 @@ SupprimeExt_Exit:
    ' Fin
 SupprimeExt_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "SupprimeExt", strClsFicProgID, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "SupprimeExt", strClsFicProgID, Err
    ' Je renvoie que faux
    SupprimeExt = False
    ' Je Continue
@@ -810,7 +809,7 @@ LectureApl_Exit:
    ' Fin
 LectureApl_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "LectureApl", strClsAplProgID & "," & strClsAplOuvre + "," + strClsAplIcon, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "LectureApl", strClsAplProgID & "," & strClsAplOuvre + "," + strClsAplIcon, Err
    ' Je renvoie que faux
    LectureApl = False
    ' Je Continue
@@ -952,7 +951,7 @@ EcritureRef_Exit:
    ' Fin
 EcritureRef_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "EcritureRef", strClsAplProgID & "," & strCLSAPLCommandOuvre & "," & strCLSAPLCommandIcon, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "EcritureRef", strClsAplProgID & "," & strCLSAPLCommandOuvre & "," & strCLSAPLCommandIcon, Err
    ' Je renvoie que faux
    EcritureRef = False
    ' Je Continue
@@ -1022,7 +1021,7 @@ AjouteRef_Exit:
    ' Fin
 AjouteRef_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "AjouteRef", strClsAplProgID & "," & strCLSAPLCommandOuvre + "," + strCLSAPLCommandIcon, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "AjouteRef", strClsAplProgID & "," & strCLSAPLCommandOuvre + "," + strCLSAPLCommandIcon, Err
    ' Je renvoie une chaine vide
    AjouteRef = False
    ' Je Continue
@@ -1130,7 +1129,7 @@ SupprimeRef_Exit:
    ' Fin
 SupprimeRef_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "SupprimeRef", strClsAplProgID, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "SupprimeRef", strClsAplProgID, Err
    ' Je renvoie que faux
    SupprimeRef = False
    ' Je Continue
@@ -1175,7 +1174,7 @@ Enumere_Exit:
    ' Fin
 Enumere_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "Enumere", "", Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONFONCTION, "Enumere", "", Err
    ' Je renvoie une chaine vide
    Enumere = False
    ' Je Continue
@@ -1267,7 +1266,7 @@ FicCompte_Exit:
    ' Fin
 FicCompte_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEPROPRIETE, "FicCompte", "", Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "FicCompte", "", Err
    ' Je renvoie zero a l'user
    FicCompte = vbEmpty
    ' Je Continue
@@ -1325,7 +1324,7 @@ Fic_Exit:
    ' Fin
 Fic_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEPROPRIETE, "Fic", CStr(lngClsFicIndex), Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "Fic", CStr(lngClsFicIndex), Err
    ' Je renvoie une chaine vide
    Fic = ucfiClsFic
    ' Je Continue
@@ -1360,7 +1359,7 @@ AplCompte_Exit:
    ' Fin
 AplCompte_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEPROPRIETE, "AplCompte", "", Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "AplCompte", "", Err
    ' Je renvoie zero a l'user
    AplCompte = vbEmpty
    ' Je Continue
@@ -1418,7 +1417,7 @@ Apl_Exit:
    ' Fin
 Apl_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEPROPRIETE, "Apl", CStr(lngClsAplIndex), Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROPRIETE, "Apl", CStr(lngClsAplIndex), Err
    ' Je renvoie une chaine vide
    Apl = ucapClsApl
    ' Je Continue

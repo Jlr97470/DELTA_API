@@ -47,8 +47,7 @@ Option Explicit                                                                 
 '******************************************************************************
 '***    Constante Qui Defini Les Libelles De La feuille en erreur                    ***
 '******************************************************************************
-Private Const mconFEUILLETYPE = FEUILLECLASS                                                     ' La feuille du source
-Private Const mconFEUILLENOM = "clsRegWin"                                                 ' Je me rapelle le nom de la Feuille
+Private Const LOGFEUILLENOM = "clsRegWin"                                                 ' Je me rapelle le nom de la Feuille
 
 '******************************************************************************
 '***    Constante Qui Defini Si Les Cles Sont Volatiles                                 ***
@@ -677,7 +676,7 @@ CRegValeurVbaValeur_Exit:
    ' Fin
 CRegValeurVbaValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "CRegValeurVbaValeur", _
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "CRegValeurVbaValeur", _
       CStr(strRegValeur) & "," & CStr(lngRegValeurType) & "," & CStr(lngRegValeurLongueur), Err
    ' Je renvoie une chaine vide
    CRegValeurVbaValeur = Empty
@@ -790,7 +789,7 @@ CVbaValeurRegValeur_Exit:
    ' Fin
 CVbaValeurRegValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, _
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, _
       "CVbaValeurRegValeur", CStr(vntVbaValeur) & "," & CStr(lngRegValeurType) & "," & CStr(lngRegValeurLongueur), Err
    ' Je renvoie une chaine vide
    CVbaValeurRegValeur = Empty
@@ -829,7 +828,7 @@ CstrRegValeurbytVbaValeur_Exit:
    ' Fin
 CstrRegValeurbytVbaValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "CstrRegValeurbytVbaValeur", strRegValeur, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "CstrRegValeurbytVbaValeur", strRegValeur, Err
    ' Je renvoie une chaine vide
    CstrRegValeurbytVbaValeur = vbEmpty
    ' Je Continue
@@ -876,7 +875,7 @@ CstrRegValeurintVbaValeur_Exit:
    ' Fin
 CstrRegValeurintVbaValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "CstrRegValeurintVbaValeur", strRegValeur, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "CstrRegValeurintVbaValeur", strRegValeur, Err
    ' Je renvoie une chaine vide
    CstrRegValeurintVbaValeur = vbEmpty
    ' Je Continue
@@ -922,7 +921,7 @@ CstrRegValeurlngVbaValeur_Exit:
    ' Fin
 CstrRegValeurlngVbaValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "CstrRegValeurlngVbaValeur", strRegValeur, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "CstrRegValeurlngVbaValeur", strRegValeur, Err
    ' Je renvoie une chaine vide
    CstrRegValeurlngVbaValeur = vbEmpty
    ' Je Continue
@@ -984,7 +983,7 @@ CstrRegValeurstrVbaValeurTab_Exit:
    ' Fin
 CstrRegValeurstrVbaValeurTab_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "CstrRegValeurstrVbaValeurTab", strRegValeur, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "CstrRegValeurstrVbaValeurTab", strRegValeur, Err
    ' Je renvoie le tableau de chaine
    CstrRegValeurstrVbaValeurTab = strVbaValeurTableau
    ' Je Continue
@@ -1036,7 +1035,7 @@ CstrRegValeurbytVbaValeurTab_Exit:
    ' Fin
 CstrRegValeurbytVbaValeurTab_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "CstrRegValeurbytVbaValeurTab", strRegValeur, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "CstrRegValeurbytVbaValeurTab", strRegValeur, Err
    ' Je renvoie le tableau d'octet
    CstrRegValeurbytVbaValeurTab = bytVbaValeurTableau
    ' Je Continue
@@ -1085,7 +1084,7 @@ ClngVbaValeurstrRegValeur_Exit:
    ' Fin
 ClngVbaValeurstrRegValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "ClngVbaValeurstrRegValeur", CStr(lngVbaValeur), Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "ClngVbaValeurstrRegValeur", CStr(lngVbaValeur), Err
    ' Je renvoie une chaine vide
    ClngVbaValeurstrRegValeur = vbNullString
    ' Je Continue
@@ -1131,7 +1130,7 @@ CstrVbaValeurTabstrRegValeur_Exit:
    ' Fin
 CstrVbaValeurTabstrRegValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "CstrVbaValeurTabstrRegValeur", strVbaValeurTableau(0), Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "CstrVbaValeurTabstrRegValeur", strVbaValeurTableau(0), Err
    ' Je renvoie une chaine vide
    CstrVbaValeurTabstrRegValeur = vbNullString
    ' Je Continue
@@ -1176,7 +1175,7 @@ CbytVbaValeurTabstrRegValeur_Exit:
    ' Fin
 CbytVbaValeurTabstrRegValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "CbytVbaValeurTabstrRegValeur", CStr(bytVbaValeurTableau(0)), Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "CbytVbaValeurTabstrRegValeur", CStr(bytVbaValeurTableau(0)), Err
    ' Je renvoie une chaine vide
    CbytVbaValeurTabstrRegValeur = vbNullString
    ' Je Continue
@@ -1280,7 +1279,7 @@ OuvreCle_Exit:
    ' Fin
 OuvreCle_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "OuvreCle", CStr(lngRegSection) & "," & CStr(strRegCle), Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "OuvreCle", CStr(lngRegSection) & "," & CStr(strRegCle), Err
    ' Je n'ai pas Supprimer la cle
    OuvreCle = False
    ' Je Continue
@@ -1374,7 +1373,7 @@ FermeCle_Exit:
    ' Fin
 FermeCle_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "FermeCle", CStr(lngRegSection) & "," & CStr(strRegCle), Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "FermeCle", CStr(lngRegSection) & "," & CStr(strRegCle), Err
    ' Je n'ai pas Supprimer la cle
    FermeCle = False
    ' Je Continue
@@ -1504,7 +1503,7 @@ EnumereCle_Exit:
    ' Fin
 EnumereCle_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "EnumereCle", CStr(lngRegSection) & "," & CStr(strRegCle), Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "EnumereCle", CStr(lngRegSection) & "," & CStr(strRegCle), Err
    ' Je n'ai pas supprimer la valeur de la cle
    EnumereCle = False
    ' Je Continue
@@ -1605,7 +1604,7 @@ EcritureCle_Exit:
    ' Fin
 EcritureCle_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "EcritureCle", CStr(lngRegSection) & "," & CStr(strRegCle), Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "EcritureCle", CStr(lngRegSection) & "," & CStr(strRegCle), Err
    ' Je n'ai pas Supprimer la cle
    EcritureCle = False
    ' Je Continue
@@ -1748,7 +1747,7 @@ SupprimeCle_Exit:
    ' Fin
 SupprimeCle_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "SupprimeCle", CStr(lngRegSection) & "," & strRegCle, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "SupprimeCle", CStr(lngRegSection) & "," & strRegCle, Err
    ' Je n'ai pas Supprimer la cle
    SupprimeCle = False
    ' Je Continue
@@ -1872,7 +1871,7 @@ LectureValeur_Exit:
    ' Fin
 LectureValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "LectureValeur", CStr(lngRegSection) & "," & CStr(strRegCle) & "," & CStr(strRegValeurNom), Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "LectureValeur", CStr(lngRegSection) & "," & CStr(strRegCle) & "," & CStr(strRegValeurNom), Err
    ' Je renvoie la valeur
    LectureValeur = False
    ' Je Continue
@@ -1977,7 +1976,7 @@ EcritureValeur_Exit:
    ' Fin
 EcritureValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "EcritureValeur", CStr(lngRegSection) & "," & CStr(strRegCle) & "," & CStr(strRegValeurNom) & "," & CStr(vntVbaValeur), Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "EcritureValeur", CStr(lngRegSection) & "," & CStr(strRegCle) & "," & CStr(strRegValeurNom) & "," & CStr(vntVbaValeur), Err
    'Je renvoie que la valeur n'a pas ete ecrit
   EcritureValeur = False
    ' Je Continue
@@ -2074,7 +2073,7 @@ SupprimeValeur_Exit:
    ' Fin
 SupprimeValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "SupprimeValeur", CStr(lngRegSection) & "," & strRegCle & "," & strRegValeurNom, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "SupprimeValeur", CStr(lngRegSection) & "," & strRegCle & "," & strRegValeurNom, Err
    ' Je n'ai pas supprimer la valeur de la cle
    SupprimeValeur = False
    ' Je Continue
@@ -2221,7 +2220,7 @@ EnumereValeur_Exit:
    ' Fin
 EnumereValeur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, LIBELLEFONCTION, "EnumereValeur", CStr(lngRegSection) & "," & strRegCle, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, LIBELLEFONCTION, "EnumereValeur", CStr(lngRegSection) & "," & strRegCle, Err
    ' Je n'ai pas supprimer la valeur de la cle
    EnumereValeur = False
    ' Je Continue
@@ -2304,7 +2303,7 @@ Private Sub AjouteRegErreur(ByVal lngRegWinOperation As Long)
                    "requested operation."
    End Select
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, "ACCESS BASE DE REGISTRE", "ERREUR", vbNullString, urerRegErreur
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, "ACCESS BASE DE REGISTRE", "ERREUR", vbNullString, urerRegErreur
    ' Fin
 AjouteRegErreur_Exit:
    ' Je Sort De La Procedure
@@ -2312,7 +2311,7 @@ AjouteRegErreur_Exit:
    ' Fin
 AjouteRegErreur_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, INSTRUCTIONPROCEDURE, "AjouteRegErreur", vbNullString, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "AjouteRegErreur", vbNullString, Err
    ' Je Continue
    Resume AjouteRegErreur_Exit
    ' Fin
@@ -2347,7 +2346,7 @@ Class_Initialize_Exit:
    ' Fin
 Class_Initialize_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, INSTRUCTIONPROCEDURE, "Class_Initialize", vbNullString, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "Class_Initialize", vbNullString, Err
    ' Je Continue
    Resume Class_Initialize_Exit
    ' Fin
@@ -2378,7 +2377,7 @@ Class_Terminate_Exit:
    ' Fin
 Class_Terminate_Erreur:
    ' Je l'ecrit dans le journal
-   gfloLogDeltaApi.AjouteErreur App, mconFEUILLETYPE, mconFEUILLENOM, INSTRUCTIONPROCEDURE, "Class_Terminate", vbNullString, Err
+   gfloLogDeltaApi.AjouteErreur App, FEUILLECLASS, LOGFEUILLENOM, INSTRUCTIONPROCEDURE, "Class_Terminate", vbNullString, Err
    ' Je Continue
    Resume Class_Terminate_Exit
    ' Fin
