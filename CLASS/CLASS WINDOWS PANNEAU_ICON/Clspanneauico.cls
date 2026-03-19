@@ -90,9 +90,11 @@ Public Enum ICONINFORMATIONCONSTANTES
 End Enum
 
 
-'Private Const TRAY_CALLBACK = (WM_USER + 1001&)
-'
+Private Const TRAY_CALLBACK = (WM_USER + 1001&)
+
 'Public Sub AddIconToTray(inWinState As Integer, inFormhwnd As Long, inFormIconHandle As Long, inTip As String)
+'    Dim theFormWinState As Integer
+'
 '    theFormWinState = inWinState
 '    theWindProc = SetWindowLong(inFormhwnd, GWL_WNDPROC, AddressOf NewWindowProc)
 '
@@ -108,8 +110,7 @@ End Enum
 '    Shell_NotifyIconA MSG_ADD, typNID
 'End Sub
 '
-'Public Function NewWindowProc(ByVal hwnd As Long, ByVal Msg As Long, _
-'        ByVal wParam As Long, ByVal lParam As Long) As Long
+'Public Function NewWindowProc(ByVal hwnd As Long, ByVal Msg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
 '    If Msg = TRAY_CALLBACK Then
 '         If lParam = WM_LBUTTONUP Then           ' Left click icon
 '             If theForm.WindowState = vbMinimized Then
@@ -144,5 +145,5 @@ End Enum
 'Public Sub ErrMsgProc(mMsg As String)
 '    MsgBox mMsg & vbCrLf & Err.Number & Space(5) & Err.Description
 'End Sub
-'
-'
+
+

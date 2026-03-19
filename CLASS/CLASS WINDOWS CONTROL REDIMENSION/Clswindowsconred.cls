@@ -13,7 +13,28 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
 Attribute VB_Ext_KEY = "SavedWithClassBuilder6" ,"Yes"
 Attribute VB_Ext_KEY = "Top_Level" ,"Yes"
-'Option Explicit
+''******************************************************************************
+''***    Delta Copyright                                                             (31/10/2000)  ***
+''******************************************************************************
+''***    CLASS:                                                                                             ***
+''***        clsWindowsConRed                                                                               ***
+''******************************************************************************
+''***    FONCTION:                                                                                       ***
+''***      ----------    Pour La Gestion De  Windows  --------                                  ***
+''******************************************************************************
+''***    PROGRAMMEUR:                                                                              ***
+''***      Royer Jean-Laurent                                                                         ***
+''******************************************************************************
+'
+''******************************************************************************
+''***    MODIF :                                                                                            ***
+''***      Version 1.0 : 30/10/2000                                                                  ***
+''******************************************************************************
+'Option Explicit                                                                                               ' Je doit etre sur que mes variables on ete declarer
+'
+''******************************************************************************
+''***    Declaration De Constante Privee                                                       ***
+''******************************************************************************
 '
 'Private Const SWP_DRAWFRAME = &H20
 'Private Const SWP_NOMOVE = &H2
@@ -25,24 +46,10 @@ Attribute VB_Ext_KEY = "Top_Level" ,"Yes"
 'Private Const WS_THICKFRAME = &H40000
 '
 '
-'Private Declare Function GetWindowLong _
-'    Lib "user32" _
-'    Alias "GetWindowLongA" _
-'    (ByVal hwnd As Long, ByVal nIndex As Long) _
-'    As Long
+'Private Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long) As Long
 '
-'Private Declare Function SetWindowLong _
-'    Lib "user32" _
-'    Alias "SetWindowLongA" _
-'    (ByVal hwnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) _
-'    As Long
+'Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
 '
-'
-'Private Declare Function SetWindowPos _
-'    Lib "user32" _
-'    (ByVal hwnd As Long, ByVal hWndInsertAfter As Long, _
-'    ByVal x As Long, ByVal Y As Long, ByVal cx As Long, _
-'    ByVal cy As Long, ByVal wFlags As Long) _
-'    As Long
-'
-'
+'Private Declare Function SetWindowPos Lib "user32" (ByVal hwnd As Long, ByVal hWndInsertAfter As Long, ByVal x As Long, ByVal Y As Long, ByVal cx As Long, ByVal cy As Long, ByVal wFlags As Long) As Long
+
+
